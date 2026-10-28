@@ -1,0 +1,5052 @@
+{
+  "schema_version": 2,
+  "project": {
+    "id": "kuro",
+    "title": "Kuro",
+    "duration_seconds": 137.0,
+    "tempo": 100,
+    "seed": 7
+  },
+  "sections": [
+    {
+      "id": "sec-scan-1",
+      "name": "Scan",
+      "start": 0.0,
+      "end": 30.0,
+      "intent": "Nero, poi ping isolati su una griglia nascosta: il motivo da solo, la pulsazione si stabilisce prima di tutto il resto. Il nastro affiora appena alla fine.",
+      "energy": 0.15,
+      "density": 0.15
+    },
+    {
+      "id": "sec-accretion-1",
+      "name": "Accretion",
+      "start": 30.0,
+      "end": 68.0,
+      "intent": "Un impatto sul battere. I pattern si addensano e sfasano, il metallo fa da controtempo, respiri di silenzio sempre più lunghi a fine frase.",
+      "energy": 0.55,
+      "density": 0.6
+    },
+    {
+      "id": "sec-rupture-1",
+      "name": "Rupture",
+      "start": 68.0,
+      "end": 89.0,
+      "intent": "Accelerando esponenziale fino a un muro di glitch, il nastro sempre più veloce, stutter che si stringono; un ultimo impatto e poi nero lungo.",
+      "energy": 1.0,
+      "density": 1.0
+    },
+    {
+      "id": "sec-residue-1",
+      "name": "Residue",
+      "start": 89.0,
+      "end": 119.0,
+      "intent": "Nessun impatto: un letto. Il nastro va all'indietro, il motivo torna come eco retrograda che si allontana.",
+      "energy": 0.35,
+      "density": 0.35
+    },
+    {
+      "id": "sec-rescan-1",
+      "name": "Rescan",
+      "start": 119.0,
+      "end": 137.0,
+      "intent": "I ping dell'inizio che rallentano, il nastro che svanisce, silenzio.",
+      "energy": 0.1,
+      "density": 0.1
+    }
+  ],
+  "parts": [
+    {
+      "id": "part-tape",
+      "name": "Nastro",
+      "role": "l'edificio",
+      "source_id": "tape",
+      "section_ids": [
+        "sec-scan-1",
+        "sec-accretion-1",
+        "sec-rupture-1",
+        "sec-residue-1",
+        "sec-rescan-1"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-glitch",
+      "name": "Glitch",
+      "role": "banco",
+      "source_id": "glitch-0",
+      "section_ids": [
+        "sec-scan-1",
+        "sec-accretion-1",
+        "sec-rupture-1",
+        "sec-residue-1",
+        "sec-rescan-1"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-metal",
+      "name": "Metallo",
+      "role": "banco",
+      "source_id": "metal-0",
+      "section_ids": [
+        "sec-scan-1",
+        "sec-accretion-1",
+        "sec-rupture-1",
+        "sec-residue-1",
+        "sec-rescan-1"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-sub",
+      "name": "Sub",
+      "role": "banco",
+      "source_id": "sub-0",
+      "section_ids": [
+        "sec-scan-1",
+        "sec-accretion-1",
+        "sec-rupture-1",
+        "sec-residue-1",
+        "sec-rescan-1"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-splinter",
+      "name": "Schegge",
+      "role": "banco",
+      "source_id": "asset-glitch-53cdb5e948",
+      "section_ids": [
+        "sec-rupture-1"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-texture",
+      "name": "Texture",
+      "role": "banco",
+      "source_id": "texture-0",
+      "section_ids": [
+        "sec-residue-1",
+        "sec-rescan-1"
+      ],
+      "locked": false
+    }
+  ],
+  "assets": [
+    {
+      "id": "tape",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/subassemblies_full.wav",
+      "sha256": "16461b33927c246bd43d4bc45bb53e9bafbe651d9771c0101d94459e37f8199a",
+      "provenance": {
+        "source": "registrazione"
+      }
+    },
+    {
+      "id": "glitch-0",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_0.wav",
+      "sha256": "6e5806fca7701f9708d636cfe2ef1bc7e27dbe807db406c412ddb1181b68b271",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_0.wav"
+      }
+    },
+    {
+      "id": "glitch-1",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_1.wav",
+      "sha256": "8bc46898dd313a05df5b386e0d29bb81b97aa980bd32df16a8be9683035f581e",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_1.wav"
+      }
+    },
+    {
+      "id": "glitch-2",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_2.wav",
+      "sha256": "4be985e8f9f614fce9aceb0258598c35264aefa222d3612614fe902890ccf466",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_2.wav"
+      }
+    },
+    {
+      "id": "glitch-3",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_3.wav",
+      "sha256": "df16f6edde3338a33f9371ba8a28a54f609646048042f81967544006f1e8727b",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_3.wav"
+      }
+    },
+    {
+      "id": "glitch-4",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_4.wav",
+      "sha256": "c93b48adb42352033263e264f331c497eb28c323194fca9ccc7beb16447bd9b5",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_4.wav"
+      }
+    },
+    {
+      "id": "glitch-5",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_5.wav",
+      "sha256": "bc283dc097d713d9a13753db6a594775318c52cc457cee63920b2b7aaebb7455",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_5.wav"
+      }
+    },
+    {
+      "id": "glitch-6",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_6.wav",
+      "sha256": "ecae3d14623eda7da8427e59fc3a26fe7dc841777eae91cd77384de4a12ef176",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_6.wav"
+      }
+    },
+    {
+      "id": "glitch-7",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_7.wav",
+      "sha256": "728261e0fd8f02e8ada5ae07ead7ecf9c37d1365831fab39fd0a9abac6af6976",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_7.wav"
+      }
+    },
+    {
+      "id": "glitch-8",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_8.wav",
+      "sha256": "ede55ca188aeb04a29be2a8035e464a173d96d87cc67bcee27431eea7b92329a",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_8.wav"
+      }
+    },
+    {
+      "id": "glitch-9",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_9.wav",
+      "sha256": "28e2fe0e5ca829ad606ba8193c9d65f7c2b6de4adda9e58773d6ffa22a4c3953",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_9.wav"
+      }
+    },
+    {
+      "id": "glitch-10",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_10.wav",
+      "sha256": "9891aec6355f3c06df20f4aebff741abc9fa552297a1c62980b64dff8d6aed30",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_10.wav"
+      }
+    },
+    {
+      "id": "glitch-11",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_11.wav",
+      "sha256": "febf697af20114985663a84e2c61bbd2ded5b55ac699142083515506f1b41110",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_11.wav"
+      }
+    },
+    {
+      "id": "glitch-12",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_12.wav",
+      "sha256": "345d603917dd24d52f3d7836e4b55e8c59bffb39606cb72381843795b0a6dc74",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_12.wav"
+      }
+    },
+    {
+      "id": "glitch-13",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/glitch/glitch_13.wav",
+      "sha256": "c74e71c9e89022c55c1cecd8f72bdd04067febadda3e844db35f95cc312f7d7a",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "glitch_13.wav"
+      }
+    },
+    {
+      "id": "metal-0",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_0.wav",
+      "sha256": "6be09882e1652e550f45a8ab775e30efbee3f0e65e2f42e0d75adfd440cc6f5b",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_0.wav"
+      }
+    },
+    {
+      "id": "metal-1",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_1.wav",
+      "sha256": "85bb6e050fb22aed300ab3dd3d46ca01c7480e80745d8816e9c9fb360ba52dfb",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_1.wav"
+      }
+    },
+    {
+      "id": "metal-2",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_2.wav",
+      "sha256": "457e33762a78061fa3b7c14cc631c38ed99625e544c2e736ce07db0f39edad1f",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_2.wav"
+      }
+    },
+    {
+      "id": "metal-3",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_3.wav",
+      "sha256": "d44c38e5586a50af83edbba04986a6c823415b39ee9a5ae52ad80ddca4246b29",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_3.wav"
+      }
+    },
+    {
+      "id": "metal-4",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_4.wav",
+      "sha256": "2dad59d93fbef7a7da8756c011294d28bf4c87e64d25e9553f9e5ca81a237c1f",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_4.wav"
+      }
+    },
+    {
+      "id": "metal-5",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_5.wav",
+      "sha256": "1f362d49c8e07aeeb8068e674a824a0211c89bf7de3e08cb09c15e6550956807",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_5.wav"
+      }
+    },
+    {
+      "id": "metal-6",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_6.wav",
+      "sha256": "5a80ad1fd30d6ec809953fbb862ec94b6a5be6563ed57e12cd7a51fec174bc2f",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_6.wav"
+      }
+    },
+    {
+      "id": "metal-7",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_7.wav",
+      "sha256": "7f8efbbc456808b0ee5b82e439e259a633342e9efce25ec5d3f0cfd1bfaac18c",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_7.wav"
+      }
+    },
+    {
+      "id": "metal-8",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_8.wav",
+      "sha256": "2231c206f55bed83e57cab4750212a3ef9fbbab307285f644ea6869a607c0036",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_8.wav"
+      }
+    },
+    {
+      "id": "metal-9",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_9.wav",
+      "sha256": "dec47f53a4c3d59b746bbaf2bb17d6b5fe861c7b5d7c7b3e3871eb1839e84e25",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_9.wav"
+      }
+    },
+    {
+      "id": "metal-10",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_10.wav",
+      "sha256": "f7e8ea4a40efdaf49fdb18f8f3ba3a4e30a1ed2fa07b92fd1c7cf6b978451a6f",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_10.wav"
+      }
+    },
+    {
+      "id": "metal-11",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/metal/metal_11.wav",
+      "sha256": "63938f795e5d2c317f8b9f76ff36c41a59355a4620f6a3de21cb62e0346b647d",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "metal_11.wav"
+      }
+    },
+    {
+      "id": "sub-0",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_0.wav",
+      "sha256": "6a25ab5e77b444b90a4f47c5ba73a6f77394995d3de4ba62d478ccd04df054fb",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_0.wav"
+      }
+    },
+    {
+      "id": "sub-1",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_1.wav",
+      "sha256": "21e47f48398985932bc88c21732a4ffd215b8d38e6b62de7cd05c94708b9768b",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_1.wav"
+      }
+    },
+    {
+      "id": "sub-2",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_2.wav",
+      "sha256": "9613a153ab5af022ac32ce967080f2fc67a30c5b29f48751bb53c37619f07f22",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_2.wav"
+      }
+    },
+    {
+      "id": "sub-3",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_3.wav",
+      "sha256": "674a0796b31edc9f6c0fe7d657c98d9908069bf6cf7790fcf24ac1d6fe0d6c04",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_3.wav"
+      }
+    },
+    {
+      "id": "sub-4",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_4.wav",
+      "sha256": "6b1b3b0fccd8bcfbcc556018512c3d02f994ff71c6f32b05abef1fe05642ef2e",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_4.wav"
+      }
+    },
+    {
+      "id": "sub-5",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_5.wav",
+      "sha256": "db25f21a7358c0146e519e77d5fcb1a8e18f1175b6590917e26393da086fa5bb",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_5.wav"
+      }
+    },
+    {
+      "id": "sub-6",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_6.wav",
+      "sha256": "dc9497df200bfa0759d5c4841780f0c44b8dd865930550b43b3bf348456bbcf3",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_6.wav"
+      }
+    },
+    {
+      "id": "sub-7",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/sub/sub_7.wav",
+      "sha256": "353b04afc8ff344684e3a0d490d5771c8f29943ffb5712a810284c7940c55db1",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "sub_7.wav"
+      }
+    },
+    {
+      "id": "texture-0",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/texture/texture_0.wav",
+      "sha256": "5435a4945aaec1fa2eae979b8ea322231fab13ef9b63b4cbe58d811cb29e91f9",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "texture_0.wav"
+      }
+    },
+    {
+      "id": "texture-1",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/texture/texture_1.wav",
+      "sha256": "0e76e1f32452df8bc3d9f0f4d28299d86cd752a6b186729467991095c2d48405",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "texture_1.wav"
+      }
+    },
+    {
+      "id": "texture-2",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/texture/texture_2.wav",
+      "sha256": "93e724cd38893889d266625df73944d9fab476f57c68c9a85ec9dce6d7aa5189",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "texture_2.wav"
+      }
+    },
+    {
+      "id": "texture-3",
+      "path": "../../../pureDataMCP/kuro/kuro_samples_fx/texture/texture_3.wav",
+      "sha256": "17f04f2422fd7107bff9e22e2883fea6e672035404c5c821f95d77c38c82c82a",
+      "provenance": {
+        "source": "kuro_samples_fx",
+        "file": "texture_3.wav"
+      }
+    },
+    {
+      "id": "asset-glitch-53cdb5e948",
+      "path": "../../../glitchLAB/library/53cdb5e948.wav",
+      "sha256": "d56c6a5d79e18dbc4218d81f3150c479b98413addf087dd52ebeb3b603e52db6",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "53cdb5e948",
+        "character": "digitale",
+        "seed": 917414379,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.099,
+          "transients": 10.15,
+          "centroid": 4044.4,
+          "noisiness": 0.175,
+          "periodicity": 0.099,
+          "silence": 0.0,
+          "rms": -9.2
+        },
+        "rebuild": "python -m glitchlab render <dna di 53cdb5e948>"
+      }
+    },
+    {
+      "id": "asset-glitch-24aecdf5b4",
+      "path": "../../../glitchLAB/library/24aecdf5b4.wav",
+      "sha256": "1ff402a5fe472d205220df4049950ad445b7303da7cdccece8dfd752575696d3",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "24aecdf5b4",
+        "character": "digitale",
+        "seed": 1411397399,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.174,
+          "transients": 11.5,
+          "centroid": 5134.1,
+          "noisiness": 0.3,
+          "periodicity": 0.023,
+          "silence": 0.75,
+          "rms": -19.2
+        },
+        "rebuild": "python -m glitchlab render <dna di 24aecdf5b4>"
+      }
+    },
+    {
+      "id": "asset-glitch-0e66d18ec2",
+      "path": "../../../glitchLAB/library/0e66d18ec2.wav",
+      "sha256": "0c8153e9f73c682c99b7374d68118af1bb3c1ca216c65850ee78e581ccef3ccf",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "0e66d18ec2",
+        "character": "digitale",
+        "seed": 870947842,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.311,
+          "transients": 6.43,
+          "centroid": 4696.5,
+          "noisiness": 0.388,
+          "periodicity": 0.59,
+          "silence": 0.429,
+          "rms": -16.9
+        },
+        "rebuild": "python -m glitchlab render <dna di 0e66d18ec2>"
+      }
+    },
+    {
+      "id": "asset-glitch-db90866dc1",
+      "path": "../../../glitchLAB/library/db90866dc1.wav",
+      "sha256": "6b1d13ba6701ebdc06b9866af368dd3d7fa22555fa0162985c5e8a348dc89e10",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "db90866dc1",
+        "character": "digitale",
+        "seed": 811853737,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.374,
+          "transients": 5.34,
+          "centroid": 4531.5,
+          "noisiness": 0.351,
+          "periodicity": 0.457,
+          "silence": 0.588,
+          "rms": -17.0
+        },
+        "rebuild": "python -m glitchlab render <dna di db90866dc1>"
+      }
+    },
+    {
+      "id": "asset-glitch-5eaa4e1df0",
+      "path": "../../../glitchLAB/library/5eaa4e1df0.wav",
+      "sha256": "927b7a75d7e7977a6eb922960764bb12238c2785e93bd1b274e9a008cab00776",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "5eaa4e1df0",
+        "character": "digitale",
+        "seed": 1727814302,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.406,
+          "transients": 7.4,
+          "centroid": 5147.3,
+          "noisiness": 0.38,
+          "periodicity": 0.547,
+          "silence": 0.211,
+          "rms": -16.1
+        },
+        "rebuild": "python -m glitchlab render <dna di 5eaa4e1df0>"
+      }
+    },
+    {
+      "id": "asset-glitch-1cecf22423",
+      "path": "../../../glitchLAB/library/1cecf22423.wav",
+      "sha256": "ed0a1eaf818341e5eb89bd15c129b809b974bf31b772c9dde0972709d9fadfae",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "1cecf22423",
+        "character": "digitale",
+        "seed": 1192584754,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.518,
+          "transients": 7.73,
+          "centroid": 3421.6,
+          "noisiness": 0.0,
+          "periodicity": 0.831,
+          "silence": 0.167,
+          "rms": -15.9
+        },
+        "rebuild": "python -m glitchlab render <dna di 1cecf22423>"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "node-tape",
+      "type": "scrub",
+      "part_id": "part-tape",
+      "params": {
+        "amp": 0.0,
+        "asset": "tape"
+      }
+    },
+    {
+      "id": "node-tape-freeze",
+      "type": "fragment",
+      "part_id": "part-tape",
+      "params": {
+        "slice_ms": 40.0,
+        "mix": 1.0
+      }
+    },
+    {
+      "id": "node-master",
+      "type": "gain",
+      "part_id": null,
+      "params": {
+        "gain": 0.5
+      }
+    },
+    {
+      "id": "node-clip",
+      "type": "clip",
+      "part_id": null,
+      "params": {}
+    },
+    {
+      "id": "node-out",
+      "type": "output",
+      "part_id": null,
+      "params": {}
+    },
+    {
+      "id": "node-glitch",
+      "type": "bank",
+      "part_id": "part-glitch",
+      "params": {
+        "samples": [
+          "glitch-0",
+          "glitch-1",
+          "glitch-2",
+          "glitch-3",
+          "glitch-4",
+          "glitch-5",
+          "glitch-6",
+          "glitch-7",
+          "glitch-8",
+          "glitch-9",
+          "glitch-10",
+          "glitch-11",
+          "glitch-12",
+          "glitch-13"
+        ]
+      }
+    },
+    {
+      "id": "node-metal",
+      "type": "bank",
+      "part_id": "part-metal",
+      "params": {
+        "samples": [
+          "metal-0",
+          "metal-1",
+          "metal-2",
+          "metal-3",
+          "metal-4",
+          "metal-5",
+          "metal-6",
+          "metal-7",
+          "metal-8",
+          "metal-9",
+          "metal-10",
+          "metal-11"
+        ]
+      }
+    },
+    {
+      "id": "node-sub",
+      "type": "bank",
+      "part_id": "part-sub",
+      "params": {
+        "samples": [
+          "sub-0",
+          "sub-1",
+          "sub-2",
+          "sub-3",
+          "sub-4",
+          "sub-5",
+          "sub-6",
+          "sub-7"
+        ]
+      }
+    },
+    {
+      "id": "node-splinter",
+      "type": "bank",
+      "part_id": "part-splinter",
+      "params": {
+        "samples": [
+          "asset-glitch-53cdb5e948",
+          "asset-glitch-24aecdf5b4",
+          "asset-glitch-0e66d18ec2",
+          "asset-glitch-db90866dc1",
+          "asset-glitch-5eaa4e1df0",
+          "asset-glitch-1cecf22423"
+        ]
+      }
+    },
+    {
+      "id": "node-texture",
+      "type": "bank",
+      "part_id": "part-texture",
+      "params": {
+        "samples": [
+          "texture-0",
+          "texture-1",
+          "texture-2",
+          "texture-3"
+        ]
+      }
+    },
+    {
+      "id": "node-texture-lp",
+      "type": "lowpass",
+      "part_id": "part-texture",
+      "params": {
+        "cutoff_hz": 6000.0
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1",
+      "source": "node-tape.audio_out",
+      "target": "node-tape-freeze.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-2",
+      "source": "node-master.audio_out",
+      "target": "node-clip.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-3",
+      "source": "node-clip.audio_out",
+      "target": "node-out.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-4",
+      "source": "node-tape-freeze.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-5",
+      "source": "node-glitch.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-6",
+      "source": "node-metal.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-7",
+      "source": "node-sub.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-8",
+      "source": "node-splinter.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-9",
+      "source": "node-texture.audio_out",
+      "target": "node-texture-lp.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-10",
+      "source": "node-texture-lp.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-00001",
+      "time": 0.0,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00002",
+      "time": 1.5,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00003",
+      "time": 1.5,
+      "target": "node-glitch",
+      "message": "play 12 0.45"
+    },
+    {
+      "id": "ev-00004",
+      "time": 1.5,
+      "target": "node-metal",
+      "message": "play 0 0.45"
+    },
+    {
+      "id": "ev-00005",
+      "time": 3.9,
+      "target": "node-glitch",
+      "message": "play 3 0.48"
+    },
+    {
+      "id": "ev-00006",
+      "time": 6.3,
+      "target": "node-glitch",
+      "message": "play 10 0.51"
+    },
+    {
+      "id": "ev-00007",
+      "time": 8.7,
+      "target": "node-glitch",
+      "message": "play 0 0.54"
+    },
+    {
+      "id": "ev-00008",
+      "time": 9.9,
+      "target": "node-glitch",
+      "message": "play 12 0.54"
+    },
+    {
+      "id": "ev-00009",
+      "time": 11.1,
+      "target": "node-glitch",
+      "message": "play 3 0.57"
+    },
+    {
+      "id": "ev-00010",
+      "time": 11.1,
+      "target": "node-metal",
+      "message": "play 0 0.55"
+    },
+    {
+      "id": "ev-00011",
+      "time": 13.5,
+      "target": "node-glitch",
+      "message": "play 10 0.6"
+    },
+    {
+      "id": "ev-00012",
+      "time": 14.7,
+      "target": "node-glitch",
+      "message": "play 0 0.6"
+    },
+    {
+      "id": "ev-00013",
+      "time": 15.9,
+      "target": "node-glitch",
+      "message": "play 12 0.63"
+    },
+    {
+      "id": "ev-00014",
+      "time": 17.1,
+      "target": "node-glitch",
+      "message": "play 3 0.63"
+    },
+    {
+      "id": "ev-00015",
+      "time": 18.3,
+      "target": "node-glitch",
+      "message": "play 10 0.66"
+    },
+    {
+      "id": "ev-00016",
+      "time": 19.2,
+      "target": "node-glitch",
+      "message": "play 0 0.66"
+    },
+    {
+      "id": "ev-00017",
+      "time": 19.95,
+      "target": "node-glitch",
+      "message": "play 12 0.66"
+    },
+    {
+      "id": "ev-00018",
+      "time": 18.3,
+      "target": "node-tape",
+      "message": "amp 0.12 2500"
+    },
+    {
+      "id": "ev-00019",
+      "time": 18.3,
+      "target": "node-tape",
+      "message": "pos 26460 2400"
+    },
+    {
+      "id": "ev-00020",
+      "time": 20.7,
+      "target": "node-glitch",
+      "message": "play 3 0.69"
+    },
+    {
+      "id": "ev-00021",
+      "time": 21.9,
+      "target": "node-glitch",
+      "message": "play 10 0.69"
+    },
+    {
+      "id": "ev-00022",
+      "time": 20.7,
+      "target": "node-metal",
+      "message": "play 0 0.65"
+    },
+    {
+      "id": "ev-00023",
+      "time": 20.7,
+      "target": "node-tape",
+      "message": "pos 52920 2400"
+    },
+    {
+      "id": "ev-00024",
+      "time": 23.1,
+      "target": "node-glitch",
+      "message": "play 0 0.72"
+    },
+    {
+      "id": "ev-00025",
+      "time": 24.0,
+      "target": "node-glitch",
+      "message": "play 12 0.72"
+    },
+    {
+      "id": "ev-00026",
+      "time": 24.75,
+      "target": "node-glitch",
+      "message": "play 3 0.72"
+    },
+    {
+      "id": "ev-00027",
+      "time": 23.1,
+      "target": "node-tape",
+      "message": "pos 79380 2400"
+    },
+    {
+      "id": "ev-00028",
+      "time": 25.5,
+      "target": "node-glitch",
+      "message": "play 10 0.75"
+    },
+    {
+      "id": "ev-00029",
+      "time": 26.4,
+      "target": "node-glitch",
+      "message": "play 0 0.75"
+    },
+    {
+      "id": "ev-00030",
+      "time": 27.15,
+      "target": "node-glitch",
+      "message": "play 12 0.75"
+    },
+    {
+      "id": "ev-00031",
+      "time": 25.5,
+      "target": "node-tape",
+      "message": "pos 105840 2400"
+    },
+    {
+      "id": "ev-00032",
+      "time": 29.4,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00033",
+      "time": 30.0,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00034",
+      "time": 30.0,
+      "target": "node-sub",
+      "message": "play 7 0.75"
+    },
+    {
+      "id": "ev-00035",
+      "time": 30.0,
+      "target": "node-tape",
+      "message": "amp 0.35 300"
+    },
+    {
+      "id": "ev-00036",
+      "time": 30.0,
+      "target": "node-tape",
+      "message": "pos 158760 2400"
+    },
+    {
+      "id": "ev-00037",
+      "time": 30.0,
+      "target": "node-glitch",
+      "message": "play 12 0.85"
+    },
+    {
+      "id": "ev-00038",
+      "time": 30.75,
+      "target": "node-metal",
+      "message": "play 4 0.5"
+    },
+    {
+      "id": "ev-00039",
+      "time": 30.9,
+      "target": "node-glitch",
+      "message": "play 3 0.6"
+    },
+    {
+      "id": "ev-00040",
+      "time": 31.65,
+      "target": "node-glitch",
+      "message": "play 10 0.6"
+    },
+    {
+      "id": "ev-00041",
+      "time": 31.95,
+      "target": "node-metal",
+      "message": "play 4 0.5"
+    },
+    {
+      "id": "ev-00042",
+      "time": 32.4,
+      "target": "node-tape",
+      "message": "pos 215460 2400"
+    },
+    {
+      "id": "ev-00043",
+      "time": 32.4,
+      "target": "node-glitch",
+      "message": "play 0 0.857"
+    },
+    {
+      "id": "ev-00044",
+      "time": 33.15,
+      "target": "node-metal",
+      "message": "play 4 0.521"
+    },
+    {
+      "id": "ev-00045",
+      "time": 33.3,
+      "target": "node-glitch",
+      "message": "play 12 0.607"
+    },
+    {
+      "id": "ev-00046",
+      "time": 34.05,
+      "target": "node-glitch",
+      "message": "play 3 0.607"
+    },
+    {
+      "id": "ev-00047",
+      "time": 34.35,
+      "target": "node-metal",
+      "message": "play 4 0.521"
+    },
+    {
+      "id": "ev-00048",
+      "time": 34.8,
+      "target": "node-tape",
+      "message": "pos 275940 2400"
+    },
+    {
+      "id": "ev-00049",
+      "time": 35.25,
+      "target": "node-glitch",
+      "message": "play 10 0.614"
+    },
+    {
+      "id": "ev-00050",
+      "time": 35.55,
+      "target": "node-metal",
+      "message": "play 4 0.543"
+    },
+    {
+      "id": "ev-00051",
+      "time": 35.85,
+      "target": "node-glitch",
+      "message": "play 0 0.614"
+    },
+    {
+      "id": "ev-00052",
+      "time": 36.45,
+      "target": "node-glitch",
+      "message": "play 12 0.614"
+    },
+    {
+      "id": "ev-00053",
+      "time": 36.75,
+      "target": "node-metal",
+      "message": "play 4 0.543"
+    },
+    {
+      "id": "ev-00054",
+      "time": 37.05,
+      "target": "node-glitch",
+      "message": "play 3 0.614"
+    },
+    {
+      "id": "ev-00055",
+      "time": 37.2,
+      "target": "node-tape",
+      "message": "pos 340200 2400"
+    },
+    {
+      "id": "ev-00056",
+      "time": 37.65,
+      "target": "node-glitch",
+      "message": "play 10 0.621"
+    },
+    {
+      "id": "ev-00057",
+      "time": 37.65,
+      "target": "node-metal",
+      "message": "play 9 0.564"
+    },
+    {
+      "id": "ev-00058",
+      "time": 38.25,
+      "target": "node-glitch",
+      "message": "play 0 0.621"
+    },
+    {
+      "id": "ev-00059",
+      "time": 38.4,
+      "target": "node-metal",
+      "message": "play 2 0.564"
+    },
+    {
+      "id": "ev-00060",
+      "time": 38.85,
+      "target": "node-glitch",
+      "message": "play 12 0.621"
+    },
+    {
+      "id": "ev-00061",
+      "time": 39.15,
+      "target": "node-metal",
+      "message": "play 4 0.564"
+    },
+    {
+      "id": "ev-00062",
+      "time": 39.45,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00063",
+      "time": 39.6,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00064",
+      "time": 39.6,
+      "target": "node-tape",
+      "message": "pos 408240 2400"
+    },
+    {
+      "id": "ev-00065",
+      "time": 39.9,
+      "target": "node-glitch",
+      "message": "play 3 0.629"
+    },
+    {
+      "id": "ev-00066",
+      "time": 39.9,
+      "target": "node-metal",
+      "message": "play 8 0.586"
+    },
+    {
+      "id": "ev-00067",
+      "time": 40.35,
+      "target": "node-glitch",
+      "message": "play 10 0.629"
+    },
+    {
+      "id": "ev-00068",
+      "time": 40.65,
+      "target": "node-metal",
+      "message": "play 9 0.586"
+    },
+    {
+      "id": "ev-00069",
+      "time": 40.8,
+      "target": "node-glitch",
+      "message": "play 0 0.879"
+    },
+    {
+      "id": "ev-00070",
+      "time": 41.25,
+      "target": "node-glitch",
+      "message": "play 12 0.629"
+    },
+    {
+      "id": "ev-00071",
+      "time": 41.4,
+      "target": "node-metal",
+      "message": "play 2 0.586"
+    },
+    {
+      "id": "ev-00072",
+      "time": 41.7,
+      "target": "node-glitch",
+      "message": "play 3 0.629"
+    },
+    {
+      "id": "ev-00073",
+      "time": 39.6,
+      "target": "node-sub",
+      "message": "play 7 0.5"
+    },
+    {
+      "id": "ev-00074",
+      "time": 42.0,
+      "target": "node-tape",
+      "message": "pos 480060 2400"
+    },
+    {
+      "id": "ev-00075",
+      "time": 42.3,
+      "target": "node-glitch",
+      "message": "play 10 0.636"
+    },
+    {
+      "id": "ev-00076",
+      "time": 42.3,
+      "target": "node-metal",
+      "message": "play 8 0.607"
+    },
+    {
+      "id": "ev-00077",
+      "time": 42.75,
+      "target": "node-glitch",
+      "message": "play 0 0.636"
+    },
+    {
+      "id": "ev-00078",
+      "time": 43.05,
+      "target": "node-metal",
+      "message": "play 9 0.607"
+    },
+    {
+      "id": "ev-00079",
+      "time": 43.2,
+      "target": "node-glitch",
+      "message": "play 12 0.886"
+    },
+    {
+      "id": "ev-00080",
+      "time": 43.65,
+      "target": "node-glitch",
+      "message": "play 3 0.636"
+    },
+    {
+      "id": "ev-00081",
+      "time": 43.8,
+      "target": "node-metal",
+      "message": "play 2 0.607"
+    },
+    {
+      "id": "ev-00082",
+      "time": 44.1,
+      "target": "node-glitch",
+      "message": "play 10 0.636"
+    },
+    {
+      "id": "ev-00083",
+      "time": 44.4,
+      "target": "node-tape",
+      "message": "pos 555660 2400"
+    },
+    {
+      "id": "ev-00084",
+      "time": 44.4,
+      "target": "node-glitch",
+      "message": "play 0 0.893"
+    },
+    {
+      "id": "ev-00085",
+      "time": 44.7,
+      "target": "node-metal",
+      "message": "play 8 0.629"
+    },
+    {
+      "id": "ev-00086",
+      "time": 44.85,
+      "target": "node-glitch",
+      "message": "play 12 0.643"
+    },
+    {
+      "id": "ev-00087",
+      "time": 45.15,
+      "target": "node-glitch",
+      "message": "play 3 0.643"
+    },
+    {
+      "id": "ev-00088",
+      "time": 45.45,
+      "target": "node-metal",
+      "message": "play 9 0.629"
+    },
+    {
+      "id": "ev-00089",
+      "time": 45.6,
+      "target": "node-glitch",
+      "message": "play 10 0.893"
+    },
+    {
+      "id": "ev-00090",
+      "time": 46.05,
+      "target": "node-glitch",
+      "message": "play 0 0.643"
+    },
+    {
+      "id": "ev-00091",
+      "time": 46.2,
+      "target": "node-metal",
+      "message": "play 2 0.629"
+    },
+    {
+      "id": "ev-00092",
+      "time": 46.35,
+      "target": "node-glitch",
+      "message": "play 12 0.643"
+    },
+    {
+      "id": "ev-00093",
+      "time": 46.8,
+      "target": "node-tape",
+      "message": "pos 635040 2400"
+    },
+    {
+      "id": "ev-00094",
+      "time": 46.8,
+      "target": "node-glitch",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00095",
+      "time": 46.8,
+      "target": "node-metal",
+      "message": "play 2 0.65"
+    },
+    {
+      "id": "ev-00096",
+      "time": 47.25,
+      "target": "node-glitch",
+      "message": "play 10 0.65"
+    },
+    {
+      "id": "ev-00097",
+      "time": 47.4,
+      "target": "node-metal",
+      "message": "play 2 0.65"
+    },
+    {
+      "id": "ev-00098",
+      "time": 47.55,
+      "target": "node-glitch",
+      "message": "play 0 0.65"
+    },
+    {
+      "id": "ev-00099",
+      "time": 48.0,
+      "target": "node-glitch",
+      "message": "play 8 0.9"
+    },
+    {
+      "id": "ev-00100",
+      "time": 48.0,
+      "target": "node-metal",
+      "message": "play 2 0.65"
+    },
+    {
+      "id": "ev-00101",
+      "time": 48.45,
+      "target": "node-glitch",
+      "message": "play 3 0.65"
+    },
+    {
+      "id": "ev-00102",
+      "time": 48.6,
+      "target": "node-metal",
+      "message": "play 2 0.65"
+    },
+    {
+      "id": "ev-00103",
+      "time": 48.75,
+      "target": "node-glitch",
+      "message": "play 5 0.65"
+    },
+    {
+      "id": "ev-00104",
+      "time": 48.9,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00105",
+      "time": 49.2,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00106",
+      "time": 49.2,
+      "target": "node-tape",
+      "message": "pos 718200 2400"
+    },
+    {
+      "id": "ev-00107",
+      "time": 49.5,
+      "target": "node-glitch",
+      "message": "play 9 0.657"
+    },
+    {
+      "id": "ev-00108",
+      "time": 49.65,
+      "target": "node-metal",
+      "message": "play 9 0.671"
+    },
+    {
+      "id": "ev-00109",
+      "time": 49.8,
+      "target": "node-glitch",
+      "message": "play 5 0.907"
+    },
+    {
+      "id": "ev-00110",
+      "time": 50.25,
+      "target": "node-glitch",
+      "message": "play 1 0.657"
+    },
+    {
+      "id": "ev-00111",
+      "time": 50.25,
+      "target": "node-metal",
+      "message": "play 9 0.671"
+    },
+    {
+      "id": "ev-00112",
+      "time": 50.7,
+      "target": "node-glitch",
+      "message": "play 10 0.657"
+    },
+    {
+      "id": "ev-00113",
+      "time": 50.85,
+      "target": "node-metal",
+      "message": "play 9 0.671"
+    },
+    {
+      "id": "ev-00114",
+      "time": 51.0,
+      "target": "node-glitch",
+      "message": "play 0 0.907"
+    },
+    {
+      "id": "ev-00115",
+      "time": 51.45,
+      "target": "node-glitch",
+      "message": "play 12 0.657"
+    },
+    {
+      "id": "ev-00116",
+      "time": 51.45,
+      "target": "node-metal",
+      "message": "play 9 0.671"
+    },
+    {
+      "id": "ev-00117",
+      "time": 49.2,
+      "target": "node-sub",
+      "message": "play 1 0.55"
+    },
+    {
+      "id": "ev-00118",
+      "time": 51.6,
+      "target": "node-tape",
+      "message": "pos 805140 2400"
+    },
+    {
+      "id": "ev-00119",
+      "time": 51.75,
+      "target": "node-glitch",
+      "message": "play 1 0.664"
+    },
+    {
+      "id": "ev-00120",
+      "time": 52.05,
+      "target": "node-glitch",
+      "message": "play 8 0.664"
+    },
+    {
+      "id": "ev-00121",
+      "time": 52.05,
+      "target": "node-metal",
+      "message": "play 9 0.693"
+    },
+    {
+      "id": "ev-00122",
+      "time": 52.5,
+      "target": "node-glitch",
+      "message": "play 0 0.664"
+    },
+    {
+      "id": "ev-00123",
+      "time": 52.65,
+      "target": "node-metal",
+      "message": "play 9 0.693"
+    },
+    {
+      "id": "ev-00124",
+      "time": 52.8,
+      "target": "node-glitch",
+      "message": "play 12 0.914"
+    },
+    {
+      "id": "ev-00125",
+      "time": 53.1,
+      "target": "node-glitch",
+      "message": "play 3 0.664"
+    },
+    {
+      "id": "ev-00126",
+      "time": 53.25,
+      "target": "node-metal",
+      "message": "play 9 0.693"
+    },
+    {
+      "id": "ev-00127",
+      "time": 53.4,
+      "target": "node-glitch",
+      "message": "play 10 0.914"
+    },
+    {
+      "id": "ev-00128",
+      "time": 53.85,
+      "target": "node-glitch",
+      "message": "play 0 0.664"
+    },
+    {
+      "id": "ev-00129",
+      "time": 53.85,
+      "target": "node-metal",
+      "message": "play 9 0.693"
+    },
+    {
+      "id": "ev-00130",
+      "time": 54.0,
+      "target": "node-tape",
+      "message": "pos 895860 2400"
+    },
+    {
+      "id": "ev-00131",
+      "time": 54.0,
+      "target": "node-glitch",
+      "message": "play 12 0.921"
+    },
+    {
+      "id": "ev-00132",
+      "time": 54.3,
+      "target": "node-glitch",
+      "message": "play 3 0.671"
+    },
+    {
+      "id": "ev-00133",
+      "time": 54.45,
+      "target": "node-metal",
+      "message": "play 9 0.714"
+    },
+    {
+      "id": "ev-00134",
+      "time": 54.75,
+      "target": "node-glitch",
+      "message": "play 2 0.671"
+    },
+    {
+      "id": "ev-00135",
+      "time": 55.05,
+      "target": "node-glitch",
+      "message": "play 4 0.671"
+    },
+    {
+      "id": "ev-00136",
+      "time": 55.05,
+      "target": "node-metal",
+      "message": "play 9 0.714"
+    },
+    {
+      "id": "ev-00137",
+      "time": 55.35,
+      "target": "node-glitch",
+      "message": "play 6 0.671"
+    },
+    {
+      "id": "ev-00138",
+      "time": 55.65,
+      "target": "node-glitch",
+      "message": "play 11 0.671"
+    },
+    {
+      "id": "ev-00139",
+      "time": 55.65,
+      "target": "node-metal",
+      "message": "play 9 0.714"
+    },
+    {
+      "id": "ev-00140",
+      "time": 56.1,
+      "target": "node-glitch",
+      "message": "play 10 0.671"
+    },
+    {
+      "id": "ev-00141",
+      "time": 56.25,
+      "target": "node-metal",
+      "message": "play 9 0.714"
+    },
+    {
+      "id": "ev-00142",
+      "time": 56.4,
+      "target": "node-tape",
+      "message": "pos 990360 2400"
+    },
+    {
+      "id": "ev-00143",
+      "time": 56.55,
+      "target": "node-glitch",
+      "message": "play 11 0.679"
+    },
+    {
+      "id": "ev-00144",
+      "time": 56.85,
+      "target": "node-glitch",
+      "message": "play 12 0.679"
+    },
+    {
+      "id": "ev-00145",
+      "time": 56.85,
+      "target": "node-metal",
+      "message": "play 9 0.736"
+    },
+    {
+      "id": "ev-00146",
+      "time": 57.15,
+      "target": "node-glitch",
+      "message": "play 3 0.679"
+    },
+    {
+      "id": "ev-00147",
+      "time": 57.45,
+      "target": "node-glitch",
+      "message": "play 10 0.679"
+    },
+    {
+      "id": "ev-00148",
+      "time": 57.45,
+      "target": "node-metal",
+      "message": "play 9 0.736"
+    },
+    {
+      "id": "ev-00149",
+      "time": 57.75,
+      "target": "node-glitch",
+      "message": "play 0 0.679"
+    },
+    {
+      "id": "ev-00150",
+      "time": 58.05,
+      "target": "node-glitch",
+      "message": "play 12 0.679"
+    },
+    {
+      "id": "ev-00151",
+      "time": 58.05,
+      "target": "node-metal",
+      "message": "play 9 0.736"
+    },
+    {
+      "id": "ev-00152",
+      "time": 58.35,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00153",
+      "time": 58.8,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00154",
+      "time": 58.8,
+      "target": "node-tape",
+      "message": "pos 1088640 2400"
+    },
+    {
+      "id": "ev-00155",
+      "time": 58.8,
+      "target": "node-glitch",
+      "message": "play 3 0.936"
+    },
+    {
+      "id": "ev-00156",
+      "time": 58.95,
+      "target": "node-metal",
+      "message": "play 4 0.757"
+    },
+    {
+      "id": "ev-00157",
+      "time": 59.1,
+      "target": "node-glitch",
+      "message": "play 13 0.686"
+    },
+    {
+      "id": "ev-00158",
+      "time": 59.4,
+      "target": "node-glitch",
+      "message": "play 9 0.936"
+    },
+    {
+      "id": "ev-00159",
+      "time": 59.4,
+      "target": "node-metal",
+      "message": "play 2 0.757"
+    },
+    {
+      "id": "ev-00160",
+      "time": 59.7,
+      "target": "node-glitch",
+      "message": "play 12 0.686"
+    },
+    {
+      "id": "ev-00161",
+      "time": 59.85,
+      "target": "node-metal",
+      "message": "play 9 0.757"
+    },
+    {
+      "id": "ev-00162",
+      "time": 60.0,
+      "target": "node-glitch",
+      "message": "play 3 0.936"
+    },
+    {
+      "id": "ev-00163",
+      "time": 60.3,
+      "target": "node-glitch",
+      "message": "play 9 0.686"
+    },
+    {
+      "id": "ev-00164",
+      "time": 60.3,
+      "target": "node-metal",
+      "message": "play 8 0.757"
+    },
+    {
+      "id": "ev-00165",
+      "time": 60.6,
+      "target": "node-glitch",
+      "message": "play 6 0.936"
+    },
+    {
+      "id": "ev-00166",
+      "time": 60.9,
+      "target": "node-glitch",
+      "message": "play 12 0.686"
+    },
+    {
+      "id": "ev-00167",
+      "time": 60.9,
+      "target": "node-metal",
+      "message": "play 8 0.757"
+    },
+    {
+      "id": "ev-00168",
+      "time": 58.8,
+      "target": "node-sub",
+      "message": "play 7 0.6"
+    },
+    {
+      "id": "ev-00169",
+      "time": 61.2,
+      "target": "node-tape",
+      "message": "pos 1190700 2400"
+    },
+    {
+      "id": "ev-00170",
+      "time": 61.2,
+      "target": "node-glitch",
+      "message": "play 2 0.943"
+    },
+    {
+      "id": "ev-00171",
+      "time": 61.35,
+      "target": "node-metal",
+      "message": "play 4 0.779"
+    },
+    {
+      "id": "ev-00172",
+      "time": 61.5,
+      "target": "node-glitch",
+      "message": "play 13 0.693"
+    },
+    {
+      "id": "ev-00173",
+      "time": 61.65,
+      "target": "node-glitch",
+      "message": "play 11 0.693"
+    },
+    {
+      "id": "ev-00174",
+      "time": 61.8,
+      "target": "node-metal",
+      "message": "play 2 0.779"
+    },
+    {
+      "id": "ev-00175",
+      "time": 61.95,
+      "target": "node-glitch",
+      "message": "play 12 0.693"
+    },
+    {
+      "id": "ev-00176",
+      "time": 62.25,
+      "target": "node-glitch",
+      "message": "play 3 0.693"
+    },
+    {
+      "id": "ev-00177",
+      "time": 62.25,
+      "target": "node-metal",
+      "message": "play 9 0.779"
+    },
+    {
+      "id": "ev-00178",
+      "time": 62.55,
+      "target": "node-glitch",
+      "message": "play 6 0.693"
+    },
+    {
+      "id": "ev-00179",
+      "time": 62.7,
+      "target": "node-glitch",
+      "message": "play 5 0.693"
+    },
+    {
+      "id": "ev-00180",
+      "time": 62.7,
+      "target": "node-metal",
+      "message": "play 8 0.779"
+    },
+    {
+      "id": "ev-00181",
+      "time": 63.0,
+      "target": "node-glitch",
+      "message": "play 4 0.943"
+    },
+    {
+      "id": "ev-00182",
+      "time": 63.3,
+      "target": "node-glitch",
+      "message": "play 6 0.693"
+    },
+    {
+      "id": "ev-00183",
+      "time": 63.3,
+      "target": "node-metal",
+      "message": "play 8 0.779"
+    },
+    {
+      "id": "ev-00184",
+      "time": 63.6,
+      "target": "node-tape",
+      "message": "pos 1296540 2400"
+    },
+    {
+      "id": "ev-00185",
+      "time": 63.75,
+      "target": "node-glitch",
+      "message": "play 6 0.7"
+    },
+    {
+      "id": "ev-00186",
+      "time": 63.75,
+      "target": "node-metal",
+      "message": "play 4 0.8"
+    },
+    {
+      "id": "ev-00187",
+      "time": 63.9,
+      "target": "node-glitch",
+      "message": "play 6 0.7"
+    },
+    {
+      "id": "ev-00188",
+      "time": 64.2,
+      "target": "node-glitch",
+      "message": "play 2 0.95"
+    },
+    {
+      "id": "ev-00189",
+      "time": 64.2,
+      "target": "node-metal",
+      "message": "play 2 0.8"
+    },
+    {
+      "id": "ev-00190",
+      "time": 64.5,
+      "target": "node-glitch",
+      "message": "play 8 0.7"
+    },
+    {
+      "id": "ev-00191",
+      "time": 64.65,
+      "target": "node-metal",
+      "message": "play 9 0.8"
+    },
+    {
+      "id": "ev-00192",
+      "time": 64.8,
+      "target": "node-glitch",
+      "message": "play 7 0.95"
+    },
+    {
+      "id": "ev-00193",
+      "time": 64.95,
+      "target": "node-glitch",
+      "message": "play 11 0.7"
+    },
+    {
+      "id": "ev-00194",
+      "time": 65.1,
+      "target": "node-metal",
+      "message": "play 8 0.8"
+    },
+    {
+      "id": "ev-00195",
+      "time": 65.25,
+      "target": "node-glitch",
+      "message": "play 8 0.7"
+    },
+    {
+      "id": "ev-00196",
+      "time": 65.55,
+      "target": "node-glitch",
+      "message": "play 8 0.7"
+    },
+    {
+      "id": "ev-00197",
+      "time": 65.7,
+      "target": "node-metal",
+      "message": "play 8 0.8"
+    },
+    {
+      "id": "ev-00198",
+      "time": 65.85,
+      "target": "node-glitch",
+      "message": "play 10 0.7"
+    },
+    {
+      "id": "ev-00199",
+      "time": 67.0,
+      "target": "node-tape-freeze",
+      "message": "burst 600 25"
+    },
+    {
+      "id": "ev-00200",
+      "time": 67.75,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00201",
+      "time": 68.0,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00202",
+      "time": 68.0,
+      "target": "node-sub",
+      "message": "play 1 1"
+    },
+    {
+      "id": "ev-00203",
+      "time": 68.0,
+      "target": "node-tape",
+      "message": "amp 0.5 200"
+    },
+    {
+      "id": "ev-00204",
+      "time": 68.0,
+      "target": "node-tape",
+      "message": "pos 1323000 600"
+    },
+    {
+      "id": "ev-00205",
+      "time": 68.0,
+      "target": "node-glitch",
+      "message": "play 2 0.7"
+    },
+    {
+      "id": "ev-00206",
+      "time": 68.0,
+      "target": "node-metal",
+      "message": "play 6 0.8"
+    },
+    {
+      "id": "ev-00207",
+      "time": 68.15,
+      "target": "node-glitch",
+      "message": "play 3 0.703"
+    },
+    {
+      "id": "ev-00208",
+      "time": 68.4489,
+      "target": "node-glitch",
+      "message": "play 8 0.71"
+    },
+    {
+      "id": "ev-00209",
+      "time": 68.5973,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00210",
+      "time": 68.745,
+      "target": "node-tape",
+      "message": "pos 1352980 600"
+    },
+    {
+      "id": "ev-00211",
+      "time": 68.745,
+      "target": "node-splinter",
+      "message": "play 3 0.621"
+    },
+    {
+      "id": "ev-00212",
+      "time": 68.8917,
+      "target": "node-glitch",
+      "message": "play 7 0.719"
+    },
+    {
+      "id": "ev-00213",
+      "time": 69.1821,
+      "target": "node-glitch",
+      "message": "play 8 0.725"
+    },
+    {
+      "id": "ev-00214",
+      "time": 69.1821,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00215",
+      "time": 69.3257,
+      "target": "node-tape",
+      "message": "pos 1385703 600"
+    },
+    {
+      "id": "ev-00216",
+      "time": 69.3257,
+      "target": "node-glitch",
+      "message": "play 2 0.728"
+    },
+    {
+      "id": "ev-00217",
+      "time": 69.6092,
+      "target": "node-glitch",
+      "message": "play 1 0.734"
+    },
+    {
+      "id": "ev-00218",
+      "time": 69.7491,
+      "target": "node-glitch",
+      "message": "play 4 0.737"
+    },
+    {
+      "id": "ev-00219",
+      "time": 69.7491,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00220",
+      "time": 69.8877,
+      "target": "node-tape",
+      "message": "pos 1421082 600"
+    },
+    {
+      "id": "ev-00221",
+      "time": 69.8877,
+      "target": "node-glitch",
+      "message": "play 2 0.74"
+    },
+    {
+      "id": "ev-00222",
+      "time": 70.0249,
+      "target": "node-tape-freeze",
+      "message": "burst 300 40"
+    },
+    {
+      "id": "ev-00223",
+      "time": 70.1609,
+      "target": "node-glitch",
+      "message": "play 2 0.746"
+    },
+    {
+      "id": "ev-00224",
+      "time": 70.2954,
+      "target": "node-glitch",
+      "message": "play 4 0.749"
+    },
+    {
+      "id": "ev-00225",
+      "time": 70.2954,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00226",
+      "time": 70.4286,
+      "target": "node-tape",
+      "message": "pos 1459017 600"
+    },
+    {
+      "id": "ev-00227",
+      "time": 70.4286,
+      "target": "node-glitch",
+      "message": "play 10 0.752"
+    },
+    {
+      "id": "ev-00228",
+      "time": 70.5604,
+      "target": "node-glitch",
+      "message": "play 12 0.755"
+    },
+    {
+      "id": "ev-00229",
+      "time": 70.6908,
+      "target": "node-glitch",
+      "message": "play 1 0.758"
+    },
+    {
+      "id": "ev-00230",
+      "time": 70.8197,
+      "target": "node-glitch",
+      "message": "play 13 0.76"
+    },
+    {
+      "id": "ev-00231",
+      "time": 70.8197,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00232",
+      "time": 70.9473,
+      "target": "node-glitch",
+      "message": "play 7 0.763"
+    },
+    {
+      "id": "ev-00233",
+      "time": 71.0735,
+      "target": "node-tape",
+      "message": "pos 1499999 600"
+    },
+    {
+      "id": "ev-00234",
+      "time": 71.0735,
+      "target": "node-splinter",
+      "message": "play 2 0.688"
+    },
+    {
+      "id": "ev-00235",
+      "time": 71.1982,
+      "target": "node-glitch",
+      "message": "play 9 0.769"
+    },
+    {
+      "id": "ev-00236",
+      "time": 71.3216,
+      "target": "node-glitch",
+      "message": "play 2 0.771"
+    },
+    {
+      "id": "ev-00237",
+      "time": 71.3216,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00238",
+      "time": 71.4435,
+      "target": "node-splinter",
+      "message": "play 2 0.698"
+    },
+    {
+      "id": "ev-00239",
+      "time": 71.5641,
+      "target": "node-glitch",
+      "message": "play 5 0.776"
+    },
+    {
+      "id": "ev-00240",
+      "time": 71.6832,
+      "target": "node-tape",
+      "message": "pos 1543862 600"
+    },
+    {
+      "id": "ev-00241",
+      "time": 71.6832,
+      "target": "node-splinter",
+      "message": "play 2 0.705"
+    },
+    {
+      "id": "ev-00242",
+      "time": 71.801,
+      "target": "node-glitch",
+      "message": "play 6 0.781"
+    },
+    {
+      "id": "ev-00243",
+      "time": 71.801,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00244",
+      "time": 71.9174,
+      "target": "node-glitch",
+      "message": "play 11 0.784"
+    },
+    {
+      "id": "ev-00245",
+      "time": 72.0325,
+      "target": "node-glitch",
+      "message": "play 6 0.786"
+    },
+    {
+      "id": "ev-00246",
+      "time": 72.1462,
+      "target": "node-tape-freeze",
+      "message": "burst 300 28"
+    },
+    {
+      "id": "ev-00247",
+      "time": 72.1462,
+      "target": "node-glitch",
+      "message": "play 7 0.789"
+    },
+    {
+      "id": "ev-00248",
+      "time": 72.2586,
+      "target": "node-tape",
+      "message": "pos 1590443 600"
+    },
+    {
+      "id": "ev-00249",
+      "time": 72.2586,
+      "target": "node-splinter",
+      "message": "play 1 0.722"
+    },
+    {
+      "id": "ev-00250",
+      "time": 72.2586,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00251",
+      "time": 72.2586,
+      "target": "node-sub",
+      "message": "play 1 0.6"
+    },
+    {
+      "id": "ev-00252",
+      "time": 72.3696,
+      "target": "node-glitch",
+      "message": "play 8 0.794"
+    },
+    {
+      "id": "ev-00253",
+      "time": 72.4794,
+      "target": "node-splinter",
+      "message": "play 0 0.728"
+    },
+    {
+      "id": "ev-00254",
+      "time": 72.5878,
+      "target": "node-glitch",
+      "message": "play 3 0.798"
+    },
+    {
+      "id": "ev-00255",
+      "time": 72.695,
+      "target": "node-metal",
+      "message": "play 6 0.8"
+    },
+    {
+      "id": "ev-00256",
+      "time": 72.8009,
+      "target": "node-tape",
+      "message": "pos 1639587 600"
+    },
+    {
+      "id": "ev-00257",
+      "time": 72.8009,
+      "target": "node-glitch",
+      "message": "play 3 0.803"
+    },
+    {
+      "id": "ev-00258",
+      "time": 72.9056,
+      "target": "node-glitch",
+      "message": "play 8 0.805"
+    },
+    {
+      "id": "ev-00259",
+      "time": 73.009,
+      "target": "node-splinter",
+      "message": "play 0 0.743"
+    },
+    {
+      "id": "ev-00260",
+      "time": 73.1113,
+      "target": "node-splinter",
+      "message": "play 2 0.746"
+    },
+    {
+      "id": "ev-00261",
+      "time": 73.1113,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00262",
+      "time": 73.2123,
+      "target": "node-glitch",
+      "message": "play 9 0.812"
+    },
+    {
+      "id": "ev-00263",
+      "time": 73.3121,
+      "target": "node-glitch",
+      "message": "play 12 0.814"
+    },
+    {
+      "id": "ev-00264",
+      "time": 73.4108,
+      "target": "node-tape",
+      "message": "pos 1691613 600"
+    },
+    {
+      "id": "ev-00265",
+      "time": 73.4108,
+      "target": "node-splinter",
+      "message": "play 0 0.755"
+    },
+    {
+      "id": "ev-00266",
+      "time": 73.5083,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00267",
+      "time": 73.6047,
+      "target": "node-splinter",
+      "message": "play 5 0.76"
+    },
+    {
+      "id": "ev-00268",
+      "time": 73.7,
+      "target": "node-glitch",
+      "message": "play 9 0.822"
+    },
+    {
+      "id": "ev-00269",
+      "time": 73.7942,
+      "target": "node-splinter",
+      "message": "play 1 0.766"
+    },
+    {
+      "id": "ev-00270",
+      "time": 73.8873,
+      "target": "node-glitch",
+      "message": "play 6 0.826"
+    },
+    {
+      "id": "ev-00271",
+      "time": 73.8873,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00272",
+      "time": 73.8873,
+      "target": "node-sub",
+      "message": "play 7 0.6"
+    },
+    {
+      "id": "ev-00273",
+      "time": 73.9793,
+      "target": "node-tape-freeze",
+      "message": "burst 300 19.6"
+    },
+    {
+      "id": "ev-00274",
+      "time": 73.9793,
+      "target": "node-splinter",
+      "message": "play 1 0.771"
+    },
+    {
+      "id": "ev-00275",
+      "time": 74.0703,
+      "target": "node-tape",
+      "message": "pos 1746755 600"
+    },
+    {
+      "id": "ev-00276",
+      "time": 74.0703,
+      "target": "node-splinter",
+      "message": "play 5 0.773"
+    },
+    {
+      "id": "ev-00277",
+      "time": 74.1602,
+      "target": "node-glitch",
+      "message": "play 2 0.832"
+    },
+    {
+      "id": "ev-00278",
+      "time": 74.2491,
+      "target": "node-glitch",
+      "message": "play 6 0.834"
+    },
+    {
+      "id": "ev-00279",
+      "time": 74.2491,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00280",
+      "time": 74.337,
+      "target": "node-splinter",
+      "message": "play 2 0.781"
+    },
+    {
+      "id": "ev-00281",
+      "time": 74.4239,
+      "target": "node-splinter",
+      "message": "play 3 0.784"
+    },
+    {
+      "id": "ev-00282",
+      "time": 74.5099,
+      "target": "node-glitch",
+      "message": "play 10 0.839"
+    },
+    {
+      "id": "ev-00283",
+      "time": 74.5949,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00284",
+      "time": 74.6789,
+      "target": "node-tape",
+      "message": "pos 1804772 600"
+    },
+    {
+      "id": "ev-00285",
+      "time": 74.6789,
+      "target": "node-glitch",
+      "message": "play 7 0.843"
+    },
+    {
+      "id": "ev-00286",
+      "time": 74.762,
+      "target": "node-splinter",
+      "message": "play 1 0.793"
+    },
+    {
+      "id": "ev-00287",
+      "time": 74.8442,
+      "target": "node-glitch",
+      "message": "play 0 0.847"
+    },
+    {
+      "id": "ev-00288",
+      "time": 74.9255,
+      "target": "node-splinter",
+      "message": "play 2 0.798"
+    },
+    {
+      "id": "ev-00289",
+      "time": 74.9255,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00290",
+      "time": 75.0855,
+      "target": "node-splinter",
+      "message": "play 0 0.802"
+    },
+    {
+      "id": "ev-00291",
+      "time": 75.1642,
+      "target": "node-splinter",
+      "message": "play 2 0.805"
+    },
+    {
+      "id": "ev-00292",
+      "time": 75.242,
+      "target": "node-tape",
+      "message": "pos 1865450 600"
+    },
+    {
+      "id": "ev-00293",
+      "time": 75.242,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00294",
+      "time": 75.3191,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00295",
+      "time": 75.242,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00296",
+      "time": 75.242,
+      "target": "node-sub",
+      "message": "play 5 0.6"
+    },
+    {
+      "id": "ev-00297",
+      "time": 75.3191,
+      "target": "node-splinter",
+      "message": "play 4 0.809"
+    },
+    {
+      "id": "ev-00298",
+      "time": 75.3953,
+      "target": "node-glitch",
+      "message": "play 12 0.858"
+    },
+    {
+      "id": "ev-00299",
+      "time": 75.4707,
+      "target": "node-glitch",
+      "message": "play 5 0.86"
+    },
+    {
+      "id": "ev-00300",
+      "time": 75.5453,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00301",
+      "time": 75.7667,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00302",
+      "time": 75.5453,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00303",
+      "time": 75.6191,
+      "target": "node-tape-freeze",
+      "message": "burst 300 13.7"
+    },
+    {
+      "id": "ev-00304",
+      "time": 75.6191,
+      "target": "node-splinter",
+      "message": "play 5 0.818"
+    },
+    {
+      "id": "ev-00305",
+      "time": 75.6921,
+      "target": "node-glitch",
+      "message": "play 3 0.865"
+    },
+    {
+      "id": "ev-00306",
+      "time": 75.7645,
+      "target": "node-glitch",
+      "message": "play 13 0.866"
+    },
+    {
+      "id": "ev-00307",
+      "time": 75.836,
+      "target": "node-tape",
+      "message": "pos 1928935 600"
+    },
+    {
+      "id": "ev-00308",
+      "time": 75.836,
+      "target": "node-splinter",
+      "message": "play 2 0.824"
+    },
+    {
+      "id": "ev-00309",
+      "time": 75.836,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00310",
+      "time": 75.9069,
+      "target": "node-glitch",
+      "message": "play 7 0.869"
+    },
+    {
+      "id": "ev-00311",
+      "time": 75.977,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00312",
+      "time": 76.1158,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00313",
+      "time": 76.0464,
+      "target": "node-splinter",
+      "message": "play 3 0.83"
+    },
+    {
+      "id": "ev-00314",
+      "time": 76.1151,
+      "target": "node-splinter",
+      "message": "play 1 0.832"
+    },
+    {
+      "id": "ev-00315",
+      "time": 76.1151,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00316",
+      "time": 76.1831,
+      "target": "node-splinter",
+      "message": "play 0 0.834"
+    },
+    {
+      "id": "ev-00317",
+      "time": 76.2505,
+      "target": "node-glitch",
+      "message": "play 1 0.877"
+    },
+    {
+      "id": "ev-00318",
+      "time": 76.3172,
+      "target": "node-glitch",
+      "message": "play 10 0.878"
+    },
+    {
+      "id": "ev-00319",
+      "time": 76.3832,
+      "target": "node-splinter",
+      "message": "play 4 0.84"
+    },
+    {
+      "id": "ev-00320",
+      "time": 76.3832,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00321",
+      "time": 76.3832,
+      "target": "node-sub",
+      "message": "play 5 0.6"
+    },
+    {
+      "id": "ev-00322",
+      "time": 76.4486,
+      "target": "node-tape",
+      "message": "pos 1995314 600"
+    },
+    {
+      "id": "ev-00323",
+      "time": 76.4486,
+      "target": "node-splinter",
+      "message": "play 0 0.841"
+    },
+    {
+      "id": "ev-00324",
+      "time": 76.5775,
+      "target": "node-glitch",
+      "message": "play 9 0.884"
+    },
+    {
+      "id": "ev-00325",
+      "time": 76.641,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00326",
+      "time": 76.7039,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00327",
+      "time": 76.641,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00328",
+      "time": 76.7039,
+      "target": "node-splinter",
+      "message": "play 0 0.849"
+    },
+    {
+      "id": "ev-00329",
+      "time": 76.7662,
+      "target": "node-glitch",
+      "message": "play 11 0.888"
+    },
+    {
+      "id": "ev-00330",
+      "time": 76.8891,
+      "target": "node-glitch",
+      "message": "play 0 0.89"
+    },
+    {
+      "id": "ev-00331",
+      "time": 76.8891,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00332",
+      "time": 76.9497,
+      "target": "node-splinter",
+      "message": "play 5 0.856"
+    },
+    {
+      "id": "ev-00333",
+      "time": 77.0097,
+      "target": "node-tape",
+      "message": "pos 2064345 600"
+    },
+    {
+      "id": "ev-00334",
+      "time": 77.0097,
+      "target": "node-splinter",
+      "message": "play 3 0.857"
+    },
+    {
+      "id": "ev-00335",
+      "time": 77.0692,
+      "target": "node-glitch",
+      "message": "play 13 0.894"
+    },
+    {
+      "id": "ev-00336",
+      "time": 77.1282,
+      "target": "node-tape-freeze",
+      "message": "burst 300 9.6"
+    },
+    {
+      "id": "ev-00337",
+      "time": 77.1282,
+      "target": "node-glitch",
+      "message": "play 2 0.896"
+    },
+    {
+      "id": "ev-00338",
+      "time": 77.1282,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00339",
+      "time": 77.3018,
+      "target": "node-glitch",
+      "message": "play 4 0.899"
+    },
+    {
+      "id": "ev-00340",
+      "time": 77.3586,
+      "target": "node-splinter",
+      "message": "play 3 0.867"
+    },
+    {
+      "id": "ev-00341",
+      "time": 77.3586,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00342",
+      "time": 77.3586,
+      "target": "node-sub",
+      "message": "play 7 0.6"
+    },
+    {
+      "id": "ev-00343",
+      "time": 77.415,
+      "target": "node-splinter",
+      "message": "play 4 0.869"
+    },
+    {
+      "id": "ev-00344",
+      "time": 77.4708,
+      "target": "node-splinter",
+      "message": "play 0 0.871"
+    },
+    {
+      "id": "ev-00345",
+      "time": 77.581,
+      "target": "node-splinter",
+      "message": "play 0 0.874"
+    },
+    {
+      "id": "ev-00346",
+      "time": 77.581,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00347",
+      "time": 77.6354,
+      "target": "node-tape",
+      "message": "pos 2136332 600"
+    },
+    {
+      "id": "ev-00348",
+      "time": 77.6354,
+      "target": "node-glitch",
+      "message": "play 11 0.906"
+    },
+    {
+      "id": "ev-00349",
+      "time": 77.7428,
+      "target": "node-splinter",
+      "message": "play 3 0.878"
+    },
+    {
+      "id": "ev-00350",
+      "time": 77.7958,
+      "target": "node-glitch",
+      "message": "play 11 0.91"
+    },
+    {
+      "id": "ev-00351",
+      "time": 77.7958,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00352",
+      "time": 77.8484,
+      "target": "node-splinter",
+      "message": "play 1 0.881"
+    },
+    {
+      "id": "ev-00353",
+      "time": 77.9522,
+      "target": "node-splinter",
+      "message": "play 2 0.884"
+    },
+    {
+      "id": "ev-00354",
+      "time": 78.0034,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00355",
+      "time": 78.0542,
+      "target": "node-glitch",
+      "message": "play 3 0.915"
+    },
+    {
+      "id": "ev-00356",
+      "time": 78.1047,
+      "target": "node-splinter",
+      "message": "play 5 0.889"
+    },
+    {
+      "id": "ev-00357",
+      "time": 78.1547,
+      "target": "node-splinter",
+      "message": "play 1 0.89"
+    },
+    {
+      "id": "ev-00358",
+      "time": 78.2042,
+      "target": "node-tape",
+      "message": "pos 2211007 600"
+    },
+    {
+      "id": "ev-00359",
+      "time": 78.2042,
+      "target": "node-splinter",
+      "message": "play 0 0.892"
+    },
+    {
+      "id": "ev-00360",
+      "time": 78.2042,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00361",
+      "time": 78.2042,
+      "target": "node-sub",
+      "message": "play 5 0.6"
+    },
+    {
+      "id": "ev-00362",
+      "time": 78.3022,
+      "target": "node-splinter",
+      "message": "play 3 0.894"
+    },
+    {
+      "id": "ev-00363",
+      "time": 78.3506,
+      "target": "node-glitch",
+      "message": "play 4 0.922"
+    },
+    {
+      "id": "ev-00364",
+      "time": 78.3987,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00365",
+      "time": 78.4463,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00366",
+      "time": 78.3987,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00367",
+      "time": 78.4936,
+      "target": "node-tape-freeze",
+      "message": "burst 300 8"
+    },
+    {
+      "id": "ev-00368",
+      "time": 78.4936,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00369",
+      "time": 78.5405,
+      "target": "node-splinter",
+      "message": "play 1 0.901"
+    },
+    {
+      "id": "ev-00370",
+      "time": 78.587,
+      "target": "node-splinter",
+      "message": "play 4 0.902"
+    },
+    {
+      "id": "ev-00371",
+      "time": 78.587,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00372",
+      "time": 78.6332,
+      "target": "node-glitch",
+      "message": "play 9 0.928"
+    },
+    {
+      "id": "ev-00373",
+      "time": 78.679,
+      "target": "node-splinter",
+      "message": "play 3 0.905"
+    },
+    {
+      "id": "ev-00374",
+      "time": 78.7244,
+      "target": "node-splinter",
+      "message": "play 0 0.906"
+    },
+    {
+      "id": "ev-00375",
+      "time": 78.7696,
+      "target": "node-splinter",
+      "message": "play 0 0.908"
+    },
+    {
+      "id": "ev-00376",
+      "time": 78.7696,
+      "target": "node-metal",
+      "message": "play 6 0.8"
+    },
+    {
+      "id": "ev-00377",
+      "time": 78.8143,
+      "target": "node-tape",
+      "message": "pos 2288564 600"
+    },
+    {
+      "id": "ev-00378",
+      "time": 78.8143,
+      "target": "node-splinter",
+      "message": "play 0 0.909"
+    },
+    {
+      "id": "ev-00379",
+      "time": 78.8588,
+      "target": "node-splinter",
+      "message": "play 0 0.91"
+    },
+    {
+      "id": "ev-00380",
+      "time": 78.9029,
+      "target": "node-splinter",
+      "message": "play 0 0.912"
+    },
+    {
+      "id": "ev-00381",
+      "time": 78.9467,
+      "target": "node-glitch",
+      "message": "play 0 0.935"
+    },
+    {
+      "id": "ev-00382",
+      "time": 78.9467,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00383",
+      "time": 78.9467,
+      "target": "node-sub",
+      "message": "play 7 0.6"
+    },
+    {
+      "id": "ev-00384",
+      "time": 78.9901,
+      "target": "node-splinter",
+      "message": "play 5 0.914"
+    },
+    {
+      "id": "ev-00385",
+      "time": 79.0333,
+      "target": "node-splinter",
+      "message": "play 4 0.915"
+    },
+    {
+      "id": "ev-00386",
+      "time": 79.0761,
+      "target": "node-splinter",
+      "message": "play 5 0.916"
+    },
+    {
+      "id": "ev-00387",
+      "time": 79.1186,
+      "target": "node-splinter",
+      "message": "play 0 0.918"
+    },
+    {
+      "id": "ev-00388",
+      "time": 79.1186,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00389",
+      "time": 79.1608,
+      "target": "node-glitch",
+      "message": "play 1 0.939"
+    },
+    {
+      "id": "ev-00390",
+      "time": 79.2027,
+      "target": "node-splinter",
+      "message": "play 4 0.92"
+    },
+    {
+      "id": "ev-00391",
+      "time": 79.2443,
+      "target": "node-splinter",
+      "message": "play 1 0.921"
+    },
+    {
+      "id": "ev-00392",
+      "time": 79.2856,
+      "target": "node-splinter",
+      "message": "play 3 0.922"
+    },
+    {
+      "id": "ev-00393",
+      "time": 79.2856,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00394",
+      "time": 79.3266,
+      "target": "node-splinter",
+      "message": "play 1 0.924"
+    },
+    {
+      "id": "ev-00395",
+      "time": 79.3673,
+      "target": "node-splinter",
+      "message": "play 2 0.925"
+    },
+    {
+      "id": "ev-00396",
+      "time": 79.4078,
+      "target": "node-tape",
+      "message": "pos 2368925 600"
+    },
+    {
+      "id": "ev-00397",
+      "time": 79.4078,
+      "target": "node-splinter",
+      "message": "play 4 0.926"
+    },
+    {
+      "id": "ev-00398",
+      "time": 79.4479,
+      "target": "node-splinter",
+      "message": "play 1 0.927"
+    },
+    {
+      "id": "ev-00399",
+      "time": 79.4479,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00400",
+      "time": 79.4878,
+      "target": "node-splinter",
+      "message": "play 4 0.928"
+    },
+    {
+      "id": "ev-00401",
+      "time": 79.5274,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00402",
+      "time": 79.5667,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00403",
+      "time": 79.5667,
+      "target": "node-glitch",
+      "message": "play 0 0.948"
+    },
+    {
+      "id": "ev-00404",
+      "time": 79.6058,
+      "target": "node-splinter",
+      "message": "play 5 0.932"
+    },
+    {
+      "id": "ev-00405",
+      "time": 79.6058,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00406",
+      "time": 79.6058,
+      "target": "node-sub",
+      "message": "play 1 0.6"
+    },
+    {
+      "id": "ev-00407",
+      "time": 79.6446,
+      "target": "node-splinter",
+      "message": "play 3 0.933"
+    },
+    {
+      "id": "ev-00408",
+      "time": 79.7214,
+      "target": "node-tape-freeze",
+      "message": "burst 300 8"
+    },
+    {
+      "id": "ev-00409",
+      "time": 79.7214,
+      "target": "node-splinter",
+      "message": "play 5 0.935"
+    },
+    {
+      "id": "ev-00410",
+      "time": 79.7594,
+      "target": "node-splinter",
+      "message": "play 3 0.936"
+    },
+    {
+      "id": "ev-00411",
+      "time": 79.7594,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00412",
+      "time": 79.7972,
+      "target": "node-splinter",
+      "message": "play 0 0.937"
+    },
+    {
+      "id": "ev-00413",
+      "time": 79.8347,
+      "target": "node-glitch",
+      "message": "play 5 0.954"
+    },
+    {
+      "id": "ev-00414",
+      "time": 79.8719,
+      "target": "node-glitch",
+      "message": "play 7 0.954"
+    },
+    {
+      "id": "ev-00415",
+      "time": 79.909,
+      "target": "node-splinter",
+      "message": "play 4 0.94"
+    },
+    {
+      "id": "ev-00416",
+      "time": 79.909,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00417",
+      "time": 79.9457,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00418",
+      "time": 79.9823,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00419",
+      "time": 79.9823,
+      "target": "node-splinter",
+      "message": "play 5 0.942"
+    },
+    {
+      "id": "ev-00420",
+      "time": 80.0186,
+      "target": "node-tape",
+      "message": "pos 2452172 600"
+    },
+    {
+      "id": "ev-00421",
+      "time": 80.0186,
+      "target": "node-splinter",
+      "message": "play 3 0.943"
+    },
+    {
+      "id": "ev-00422",
+      "time": 80.0547,
+      "target": "node-splinter",
+      "message": "play 5 0.944"
+    },
+    {
+      "id": "ev-00423",
+      "time": 80.0547,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00424",
+      "time": 80.0905,
+      "target": "node-splinter",
+      "message": "play 4 0.945"
+    },
+    {
+      "id": "ev-00425",
+      "time": 80.1261,
+      "target": "node-glitch",
+      "message": "play 9 0.96"
+    },
+    {
+      "id": "ev-00426",
+      "time": 80.1615,
+      "target": "node-splinter",
+      "message": "play 1 0.947"
+    },
+    {
+      "id": "ev-00427",
+      "time": 80.1967,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00428",
+      "time": 80.3015,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00429",
+      "time": 80.1967,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00430",
+      "time": 80.1967,
+      "target": "node-sub",
+      "message": "play 5 0.6"
+    },
+    {
+      "id": "ev-00431",
+      "time": 80.2663,
+      "target": "node-splinter",
+      "message": "play 2 0.95"
+    },
+    {
+      "id": "ev-00432",
+      "time": 80.3008,
+      "target": "node-glitch",
+      "message": "play 0 0.964"
+    },
+    {
+      "id": "ev-00433",
+      "time": 80.3351,
+      "target": "node-glitch",
+      "message": "play 7 0.964"
+    },
+    {
+      "id": "ev-00434",
+      "time": 80.3351,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00435",
+      "time": 80.4031,
+      "target": "node-splinter",
+      "message": "play 5 0.954"
+    },
+    {
+      "id": "ev-00436",
+      "time": 80.4367,
+      "target": "node-splinter",
+      "message": "play 5 0.955"
+    },
+    {
+      "id": "ev-00437",
+      "time": 80.4702,
+      "target": "node-splinter",
+      "message": "play 5 0.956"
+    },
+    {
+      "id": "ev-00438",
+      "time": 80.4702,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00439",
+      "time": 80.5035,
+      "target": "node-splinter",
+      "message": "play 1 0.957"
+    },
+    {
+      "id": "ev-00440",
+      "time": 80.5365,
+      "target": "node-splinter",
+      "message": "play 2 0.958"
+    },
+    {
+      "id": "ev-00441",
+      "time": 80.5694,
+      "target": "node-splinter",
+      "message": "play 3 0.959"
+    },
+    {
+      "id": "ev-00442",
+      "time": 80.6021,
+      "target": "node-tape",
+      "message": "pos 2538176 600"
+    },
+    {
+      "id": "ev-00443",
+      "time": 80.6021,
+      "target": "node-splinter",
+      "message": "play 3 0.96"
+    },
+    {
+      "id": "ev-00444",
+      "time": 80.6021,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00445",
+      "time": 80.6345,
+      "target": "node-splinter",
+      "message": "play 0 0.961"
+    },
+    {
+      "id": "ev-00446",
+      "time": 80.6668,
+      "target": "node-splinter",
+      "message": "play 3 0.962"
+    },
+    {
+      "id": "ev-00447",
+      "time": 80.6989,
+      "target": "node-splinter",
+      "message": "play 4 0.963"
+    },
+    {
+      "id": "ev-00448",
+      "time": 80.7308,
+      "target": "node-splinter",
+      "message": "play 2 0.964"
+    },
+    {
+      "id": "ev-00449",
+      "time": 80.7308,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00450",
+      "time": 80.7308,
+      "target": "node-sub",
+      "message": "play 5 0.6"
+    },
+    {
+      "id": "ev-00451",
+      "time": 80.7625,
+      "target": "node-splinter",
+      "message": "play 3 0.965"
+    },
+    {
+      "id": "ev-00452",
+      "time": 80.7941,
+      "target": "node-splinter",
+      "message": "play 4 0.966"
+    },
+    {
+      "id": "ev-00453",
+      "time": 80.8254,
+      "target": "node-tape-freeze",
+      "message": "burst 300 8"
+    },
+    {
+      "id": "ev-00454",
+      "time": 80.8254,
+      "target": "node-splinter",
+      "message": "play 1 0.966"
+    },
+    {
+      "id": "ev-00455",
+      "time": 80.8566,
+      "target": "node-splinter",
+      "message": "play 3 0.967"
+    },
+    {
+      "id": "ev-00456",
+      "time": 80.8566,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00457",
+      "time": 80.8876,
+      "target": "node-splinter",
+      "message": "play 3 0.968"
+    },
+    {
+      "id": "ev-00458",
+      "time": 80.9184,
+      "target": "node-splinter",
+      "message": "play 5 0.969"
+    },
+    {
+      "id": "ev-00459",
+      "time": 80.9491,
+      "target": "node-splinter",
+      "message": "play 1 0.97"
+    },
+    {
+      "id": "ev-00460",
+      "time": 80.9795,
+      "target": "node-splinter",
+      "message": "play 4 0.971"
+    },
+    {
+      "id": "ev-00461",
+      "time": 80.9795,
+      "target": "node-metal",
+      "message": "play 6 0.8"
+    },
+    {
+      "id": "ev-00462",
+      "time": 81.04,
+      "target": "node-splinter",
+      "message": "play 3 0.973"
+    },
+    {
+      "id": "ev-00463",
+      "time": 81.0699,
+      "target": "node-splinter",
+      "message": "play 5 0.973"
+    },
+    {
+      "id": "ev-00464",
+      "time": 81.0997,
+      "target": "node-splinter",
+      "message": "play 5 0.974"
+    },
+    {
+      "id": "ev-00465",
+      "time": 81.0997,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00466",
+      "time": 81.1293,
+      "target": "node-splinter",
+      "message": "play 0 0.975"
+    },
+    {
+      "id": "ev-00467",
+      "time": 81.1588,
+      "target": "node-splinter",
+      "message": "play 5 0.976"
+    },
+    {
+      "id": "ev-00468",
+      "time": 81.1881,
+      "target": "node-splinter",
+      "message": "play 5 0.977"
+    },
+    {
+      "id": "ev-00469",
+      "time": 81.2173,
+      "target": "node-tape",
+      "message": "pos 2627087 600"
+    },
+    {
+      "id": "ev-00470",
+      "time": 81.2173,
+      "target": "node-splinter",
+      "message": "play 1 0.978"
+    },
+    {
+      "id": "ev-00471",
+      "time": 81.2173,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00472",
+      "time": 81.2173,
+      "target": "node-sub",
+      "message": "play 7 0.6"
+    },
+    {
+      "id": "ev-00473",
+      "time": 81.2463,
+      "target": "node-splinter",
+      "message": "play 4 0.978"
+    },
+    {
+      "id": "ev-00474",
+      "time": 81.2751,
+      "target": "node-splinter",
+      "message": "play 1 0.979"
+    },
+    {
+      "id": "ev-00475",
+      "time": 81.3038,
+      "target": "node-splinter",
+      "message": "play 0 0.98"
+    },
+    {
+      "id": "ev-00476",
+      "time": 81.3323,
+      "target": "node-splinter",
+      "message": "play 2 0.981"
+    },
+    {
+      "id": "ev-00477",
+      "time": 81.3323,
+      "target": "node-metal",
+      "message": "play 3 0.8"
+    },
+    {
+      "id": "ev-00478",
+      "time": 81.3607,
+      "target": "node-splinter",
+      "message": "play 4 0.982"
+    },
+    {
+      "id": "ev-00479",
+      "time": 81.3889,
+      "target": "node-splinter",
+      "message": "play 5 0.983"
+    },
+    {
+      "id": "ev-00480",
+      "time": 81.4449,
+      "target": "node-splinter",
+      "message": "play 2 0.984"
+    },
+    {
+      "id": "ev-00481",
+      "time": 81.4449,
+      "target": "node-metal",
+      "message": "play 11 0.8"
+    },
+    {
+      "id": "ev-00482",
+      "time": 81.4727,
+      "target": "node-splinter",
+      "message": "play 5 0.985"
+    },
+    {
+      "id": "ev-00483",
+      "time": 81.5003,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00484",
+      "time": 81.5828,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00485",
+      "time": 81.5278,
+      "target": "node-splinter",
+      "message": "play 4 0.987"
+    },
+    {
+      "id": "ev-00486",
+      "time": 81.5552,
+      "target": "node-splinter",
+      "message": "play 0 0.987"
+    },
+    {
+      "id": "ev-00487",
+      "time": 81.5552,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00488",
+      "time": 81.5824,
+      "target": "node-splinter",
+      "message": "play 3 0.988"
+    },
+    {
+      "id": "ev-00489",
+      "time": 81.6095,
+      "target": "node-splinter",
+      "message": "play 1 0.989"
+    },
+    {
+      "id": "ev-00490",
+      "time": 81.6364,
+      "target": "node-splinter",
+      "message": "play 5 0.99"
+    },
+    {
+      "id": "ev-00491",
+      "time": 81.6632,
+      "target": "node-splinter",
+      "message": "play 1 0.99"
+    },
+    {
+      "id": "ev-00492",
+      "time": 81.6632,
+      "target": "node-metal",
+      "message": "play 5 0.8"
+    },
+    {
+      "id": "ev-00493",
+      "time": 81.6632,
+      "target": "node-sub",
+      "message": "play 5 0.6"
+    },
+    {
+      "id": "ev-00494",
+      "time": 81.6898,
+      "target": "node-splinter",
+      "message": "play 4 0.991"
+    },
+    {
+      "id": "ev-00495",
+      "time": 81.7428,
+      "target": "node-splinter",
+      "message": "play 5 0.993"
+    },
+    {
+      "id": "ev-00496",
+      "time": 81.769,
+      "target": "node-splinter",
+      "message": "play 3 0.993"
+    },
+    {
+      "id": "ev-00497",
+      "time": 81.769,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00498",
+      "time": 81.8212,
+      "target": "node-tape",
+      "message": "pos 2718851 600"
+    },
+    {
+      "id": "ev-00499",
+      "time": 81.8212,
+      "target": "node-tape-freeze",
+      "message": "burst 300 8"
+    },
+    {
+      "id": "ev-00500",
+      "time": 81.8212,
+      "target": "node-splinter",
+      "message": "play 5 0.995"
+    },
+    {
+      "id": "ev-00501",
+      "time": 81.847,
+      "target": "node-splinter",
+      "message": "play 1 0.996"
+    },
+    {
+      "id": "ev-00502",
+      "time": 81.8728,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00503",
+      "time": 81.9496,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00504",
+      "time": 81.8728,
+      "target": "node-metal",
+      "message": "play 1 0.8"
+    },
+    {
+      "id": "ev-00505",
+      "time": 81.8984,
+      "target": "node-splinter",
+      "message": "play 5 0.997"
+    },
+    {
+      "id": "ev-00506",
+      "time": 81.9239,
+      "target": "node-splinter",
+      "message": "play 1 0.998"
+    },
+    {
+      "id": "ev-00507",
+      "time": 81.9492,
+      "target": "node-splinter",
+      "message": "play 5 0.999"
+    },
+    {
+      "id": "ev-00508",
+      "time": 81.9745,
+      "target": "node-splinter",
+      "message": "play 1 0.999"
+    },
+    {
+      "id": "ev-00509",
+      "time": 81.9745,
+      "target": "node-metal",
+      "message": "play 10 0.8"
+    },
+    {
+      "id": "ev-00510",
+      "time": 81.9996,
+      "target": "node-splinter",
+      "message": "play 1 1"
+    },
+    {
+      "id": "ev-00511",
+      "time": 82.0,
+      "target": "node-tape",
+      "message": "pos 3159851 2500"
+    },
+    {
+      "id": "ev-00512",
+      "time": 82.0,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00513",
+      "time": 82.0,
+      "target": "node-metal",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00514",
+      "time": 82.025,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00515",
+      "time": 82.05,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00516",
+      "time": 82.075,
+      "target": "node-glitch",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00517",
+      "time": 82.1,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00518",
+      "time": 82.125,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00519",
+      "time": 82.15,
+      "target": "node-glitch",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00520",
+      "time": 82.175,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00521",
+      "time": 82.2,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00522",
+      "time": 82.2,
+      "target": "node-metal",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00523",
+      "time": 82.225,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00524",
+      "time": 82.25,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00525",
+      "time": 82.275,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00526",
+      "time": 82.3,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00527",
+      "time": 82.325,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00528",
+      "time": 82.35,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00529",
+      "time": 82.375,
+      "target": "node-glitch",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00530",
+      "time": 82.4,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00531",
+      "time": 82.4,
+      "target": "node-metal",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00532",
+      "time": 82.425,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00533",
+      "time": 82.45,
+      "target": "node-glitch",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00534",
+      "time": 82.475,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00535",
+      "time": 82.5,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00536",
+      "time": 82.525,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00537",
+      "time": 82.55,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00538",
+      "time": 82.575,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00539",
+      "time": 82.6,
+      "target": "node-glitch",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00540",
+      "time": 82.6,
+      "target": "node-metal",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00541",
+      "time": 82.625,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00542",
+      "time": 82.65,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00543",
+      "time": 82.675,
+      "target": "node-glitch",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00544",
+      "time": 82.7,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00545",
+      "time": 82.725,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00546",
+      "time": 82.75,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00547",
+      "time": 82.775,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00548",
+      "time": 82.8,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00549",
+      "time": 82.8,
+      "target": "node-metal",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00550",
+      "time": 82.825,
+      "target": "node-glitch",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00551",
+      "time": 82.85,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00552",
+      "time": 82.875,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00553",
+      "time": 82.9,
+      "target": "node-glitch",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00554",
+      "time": 82.925,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00555",
+      "time": 82.95,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00556",
+      "time": 82.975,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00557",
+      "time": 83.0,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00558",
+      "time": 83.0,
+      "target": "node-metal",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00559",
+      "time": 83.025,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00560",
+      "time": 83.05,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00561",
+      "time": 83.075,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00562",
+      "time": 83.1,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00563",
+      "time": 83.125,
+      "target": "node-glitch",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00564",
+      "time": 83.15,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00565",
+      "time": 83.175,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00566",
+      "time": 83.2,
+      "target": "node-glitch",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00567",
+      "time": 83.2,
+      "target": "node-metal",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00568",
+      "time": 83.225,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00569",
+      "time": 83.25,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00570",
+      "time": 83.275,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00571",
+      "time": 83.3,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00572",
+      "time": 83.325,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00573",
+      "time": 83.35,
+      "target": "node-glitch",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00574",
+      "time": 83.375,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00575",
+      "time": 83.4,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00576",
+      "time": 83.4,
+      "target": "node-metal",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00577",
+      "time": 83.425,
+      "target": "node-glitch",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00578",
+      "time": 83.45,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00579",
+      "time": 83.475,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00580",
+      "time": 83.5,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00581",
+      "time": 83.525,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00582",
+      "time": 83.55,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00583",
+      "time": 83.575,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00584",
+      "time": 83.6,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00585",
+      "time": 83.6,
+      "target": "node-metal",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00586",
+      "time": 83.625,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00587",
+      "time": 83.65,
+      "target": "node-glitch",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00588",
+      "time": 83.675,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00589",
+      "time": 83.7,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00590",
+      "time": 83.725,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00591",
+      "time": 83.75,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00592",
+      "time": 83.775,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00593",
+      "time": 83.8,
+      "target": "node-glitch",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00594",
+      "time": 83.8,
+      "target": "node-metal",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00595",
+      "time": 83.825,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00596",
+      "time": 83.85,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00597",
+      "time": 83.875,
+      "target": "node-glitch",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00598",
+      "time": 83.9,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00599",
+      "time": 83.925,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00600",
+      "time": 83.95,
+      "target": "node-glitch",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00601",
+      "time": 83.975,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00602",
+      "time": 84.0,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00603",
+      "time": 84.0,
+      "target": "node-metal",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00604",
+      "time": 84.025,
+      "target": "node-glitch",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00605",
+      "time": 84.05,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00606",
+      "time": 84.075,
+      "target": "node-splinter",
+      "message": "play 2 0.9"
+    },
+    {
+      "id": "ev-00607",
+      "time": 84.1,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00608",
+      "time": 84.125,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00609",
+      "time": 84.15,
+      "target": "node-splinter",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00610",
+      "time": 84.175,
+      "target": "node-glitch",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00611",
+      "time": 84.2,
+      "target": "node-splinter",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00612",
+      "time": 84.2,
+      "target": "node-metal",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00613",
+      "time": 84.225,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00614",
+      "time": 84.25,
+      "target": "node-glitch",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00615",
+      "time": 84.275,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00616",
+      "time": 84.3,
+      "target": "node-splinter",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00617",
+      "time": 84.325,
+      "target": "node-glitch",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00618",
+      "time": 84.35,
+      "target": "node-splinter",
+      "message": "play 5 0.9"
+    },
+    {
+      "id": "ev-00619",
+      "time": 84.375,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00620",
+      "time": 84.4,
+      "target": "node-glitch",
+      "message": "play 0 0.9"
+    },
+    {
+      "id": "ev-00621",
+      "time": 84.4,
+      "target": "node-metal",
+      "message": "play 3 0.9"
+    },
+    {
+      "id": "ev-00622",
+      "time": 84.425,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00623",
+      "time": 84.45,
+      "target": "node-splinter",
+      "message": "play 1 0.9"
+    },
+    {
+      "id": "ev-00624",
+      "time": 84.475,
+      "target": "node-glitch",
+      "message": "play 4 0.9"
+    },
+    {
+      "id": "ev-00625",
+      "time": 84.5,
+      "target": "node-sub",
+      "message": "play 7 1"
+    },
+    {
+      "id": "ev-00626",
+      "time": 84.85,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00627",
+      "time": 89.0,
+      "target": "node-master",
+      "message": "hard 1"
+    },
+    {
+      "id": "ev-00628",
+      "time": 89.0,
+      "target": "node-tape",
+      "message": "amp 0.22 1500"
+    },
+    {
+      "id": "ev-00629",
+      "time": 89.0,
+      "target": "node-tape",
+      "message": "pos 3098111 4000"
+    },
+    {
+      "id": "ev-00630",
+      "time": 93.0,
+      "target": "node-tape",
+      "message": "pos 3036371 4000"
+    },
+    {
+      "id": "ev-00631",
+      "time": 97.0,
+      "target": "node-tape",
+      "message": "pos 2974631 4000"
+    },
+    {
+      "id": "ev-00632",
+      "time": 101.0,
+      "target": "node-tape",
+      "message": "pos 2912891 4000"
+    },
+    {
+      "id": "ev-00633",
+      "time": 105.0,
+      "target": "node-tape",
+      "message": "pos 2851151 4000"
+    },
+    {
+      "id": "ev-00634",
+      "time": 109.0,
+      "target": "node-tape",
+      "message": "pos 2789411 4000"
+    },
+    {
+      "id": "ev-00635",
+      "time": 113.0,
+      "target": "node-tape",
+      "message": "pos 2727671 4000"
+    },
+    {
+      "id": "ev-00636",
+      "time": 89.0,
+      "target": "node-texture",
+      "message": "play 0 0.26"
+    },
+    {
+      "id": "ev-00637",
+      "time": 92.5,
+      "target": "node-texture",
+      "message": "play 1 0.24"
+    },
+    {
+      "id": "ev-00638",
+      "time": 97.0,
+      "target": "node-texture",
+      "message": "play 2 0.22"
+    },
+    {
+      "id": "ev-00639",
+      "time": 102.0,
+      "target": "node-texture",
+      "message": "play 3 0.2"
+    },
+    {
+      "id": "ev-00640",
+      "time": 108.0,
+      "target": "node-texture",
+      "message": "play 1 0.18"
+    },
+    {
+      "id": "ev-00641",
+      "time": 113.0,
+      "target": "node-texture",
+      "message": "play 0 0.16"
+    },
+    {
+      "id": "ev-00642",
+      "time": 89.0,
+      "target": "node-texture-lp",
+      "message": "cutoff_hz 6000"
+    },
+    {
+      "id": "ev-00643",
+      "time": 94.0,
+      "target": "node-texture-lp",
+      "message": "cutoff_hz 4020"
+    },
+    {
+      "id": "ev-00644",
+      "time": 99.0,
+      "target": "node-texture-lp",
+      "message": "cutoff_hz 2480"
+    },
+    {
+      "id": "ev-00645",
+      "time": 104.0,
+      "target": "node-texture-lp",
+      "message": "cutoff_hz 1380"
+    },
+    {
+      "id": "ev-00646",
+      "time": 109.0,
+      "target": "node-texture-lp",
+      "message": "cutoff_hz 720"
+    },
+    {
+      "id": "ev-00647",
+      "time": 114.0,
+      "target": "node-texture-lp",
+      "message": "cutoff_hz 500"
+    },
+    {
+      "id": "ev-00648",
+      "time": 91.0,
+      "target": "node-glitch",
+      "message": "play 0 0.8"
+    },
+    {
+      "id": "ev-00649",
+      "time": 91.3,
+      "target": "node-glitch",
+      "message": "play 10 0.736"
+    },
+    {
+      "id": "ev-00650",
+      "time": 91.654,
+      "target": "node-glitch",
+      "message": "play 3 0.677"
+    },
+    {
+      "id": "ev-00651",
+      "time": 92.0717,
+      "target": "node-glitch",
+      "message": "play 12 0.623"
+    },
+    {
+      "id": "ev-00652",
+      "time": 92.5646,
+      "target": "node-glitch",
+      "message": "play 0 0.573"
+    },
+    {
+      "id": "ev-00653",
+      "time": 93.1463,
+      "target": "node-glitch",
+      "message": "play 10 0.527"
+    },
+    {
+      "id": "ev-00654",
+      "time": 93.8326,
+      "target": "node-glitch",
+      "message": "play 3 0.485"
+    },
+    {
+      "id": "ev-00655",
+      "time": 94.6425,
+      "target": "node-glitch",
+      "message": "play 12 0.446"
+    },
+    {
+      "id": "ev-00656",
+      "time": 95.5981,
+      "target": "node-glitch",
+      "message": "play 0 0.411"
+    },
+    {
+      "id": "ev-00657",
+      "time": 96.7258,
+      "target": "node-glitch",
+      "message": "play 10 0.378"
+    },
+    {
+      "id": "ev-00658",
+      "time": 98.0564,
+      "target": "node-glitch",
+      "message": "play 3 0.348"
+    },
+    {
+      "id": "ev-00659",
+      "time": 99.6265,
+      "target": "node-glitch",
+      "message": "play 12 0.32"
+    },
+    {
+      "id": "ev-00660",
+      "time": 101.4793,
+      "target": "node-glitch",
+      "message": "play 0 0.294"
+    },
+    {
+      "id": "ev-00661",
+      "time": 103.6656,
+      "target": "node-glitch",
+      "message": "play 10 0.271"
+    },
+    {
+      "id": "ev-00662",
+      "time": 106.2454,
+      "target": "node-glitch",
+      "message": "play 3 0.249"
+    },
+    {
+      "id": "ev-00663",
+      "time": 109.2896,
+      "target": "node-glitch",
+      "message": "play 12 0.229"
+    },
+    {
+      "id": "ev-00664",
+      "time": 95.0,
+      "target": "node-metal",
+      "message": "play 9 0.5"
+    },
+    {
+      "id": "ev-00665",
+      "time": 106.0,
+      "target": "node-metal",
+      "message": "play 9 0.4"
+    },
+    {
+      "id": "ev-00666",
+      "time": 110.0,
+      "target": "node-tape-freeze",
+      "message": "burst 1500 80"
+    },
+    {
+      "id": "ev-00667",
+      "time": 113.0,
+      "target": "node-tape",
+      "message": "amp 0.1 6000"
+    },
+    {
+      "id": "ev-00668",
+      "time": 119.0,
+      "target": "node-tape",
+      "message": "amp 0 4000"
+    },
+    {
+      "id": "ev-00669",
+      "time": 119.0,
+      "target": "node-metal",
+      "message": "play 0 0.35"
+    },
+    {
+      "id": "ev-00670",
+      "time": 119.6,
+      "target": "node-glitch",
+      "message": "play 12 0.7"
+    },
+    {
+      "id": "ev-00671",
+      "time": 120.2,
+      "target": "node-glitch",
+      "message": "play 3 0.63"
+    },
+    {
+      "id": "ev-00672",
+      "time": 120.932,
+      "target": "node-glitch",
+      "message": "play 10 0.567"
+    },
+    {
+      "id": "ev-00673",
+      "time": 121.825,
+      "target": "node-glitch",
+      "message": "play 0 0.51"
+    },
+    {
+      "id": "ev-00674",
+      "time": 122.9145,
+      "target": "node-glitch",
+      "message": "play 12 0.459"
+    },
+    {
+      "id": "ev-00675",
+      "time": 124.2437,
+      "target": "node-glitch",
+      "message": "play 3 0.413"
+    },
+    {
+      "id": "ev-00676",
+      "time": 125.8654,
+      "target": "node-glitch",
+      "message": "play 10 0.372"
+    },
+    {
+      "id": "ev-00677",
+      "time": 127.8438,
+      "target": "node-glitch",
+      "message": "play 0 0.335"
+    },
+    {
+      "id": "ev-00678",
+      "time": 130.2574,
+      "target": "node-glitch",
+      "message": "play 12 0.301"
+    },
+    {
+      "id": "ev-00679",
+      "time": 134.0,
+      "target": "node-master",
+      "message": "hard 0"
+    },
+    {
+      "id": "ev-00680",
+      "time": 136.9,
+      "target": "node-master",
+      "message": "hard 1"
+    }
+  ],
+  "rules": [],
+  "presentation": {
+    "nodes": {}
+  },
+  "brief": {
+    "instruments": [
+      {
+        "id": "ins-nastro-1",
+        "name": "Nastro",
+        "description": "La registrazione dell'edificio (76 s): va letta come un nastro, una testina che la attraversa lenta, veloce, all'indietro. È l'edificio stesso.",
+        "assets": [
+          "tape"
+        ],
+        "source": {
+          "type": "file"
+        }
+      },
+      {
+        "id": "ins-glitch-1",
+        "name": "Glitch",
+        "description": "Glitch brevissimi (80 ms): la grammatica del pezzo. Quattro di questi possono diventare una parola che ritorna.",
+        "assets": [
+          "glitch-0",
+          "glitch-1",
+          "glitch-2",
+          "glitch-3",
+          "glitch-4",
+          "glitch-5",
+          "glitch-6",
+          "glitch-7",
+          "glitch-8",
+          "glitch-9",
+          "glitch-10",
+          "glitch-11",
+          "glitch-12",
+          "glitch-13"
+        ],
+        "source": {
+          "type": "file"
+        }
+      },
+      {
+        "id": "ins-metallo-1",
+        "name": "Metallo",
+        "description": "Colpi metallici: contrappunto e scansione.",
+        "assets": [
+          "metal-0",
+          "metal-1",
+          "metal-2",
+          "metal-3",
+          "metal-4",
+          "metal-5",
+          "metal-6",
+          "metal-7",
+          "metal-8",
+          "metal-9",
+          "metal-10",
+          "metal-11"
+        ],
+        "source": {
+          "type": "file"
+        }
+      },
+      {
+        "id": "ins-sub-1",
+        "name": "Sub",
+        "description": "Impatti sub: i colpi che fondano le sezioni.",
+        "assets": [
+          "sub-0",
+          "sub-1",
+          "sub-2",
+          "sub-3",
+          "sub-4",
+          "sub-5",
+          "sub-6",
+          "sub-7"
+        ],
+        "source": {
+          "type": "file"
+        }
+      },
+      {
+        "id": "ins-texture-1",
+        "name": "Texture",
+        "description": "Letti lunghi, per il residuo.",
+        "assets": [
+          "texture-0",
+          "texture-1",
+          "texture-2",
+          "texture-3"
+        ],
+        "source": {
+          "type": "file"
+        }
+      },
+      {
+        "id": "ins-schegge-1",
+        "name": "Schegge",
+        "description": "Schegge digitali generate da glitchLAB, per la rottura: più taglienti dei glitch originali.",
+        "assets": [
+          "asset-glitch-53cdb5e948",
+          "asset-glitch-24aecdf5b4",
+          "asset-glitch-0e66d18ec2",
+          "asset-glitch-db90866dc1",
+          "asset-glitch-5eaa4e1df0",
+          "asset-glitch-1cecf22423"
+        ],
+        "source": {
+          "type": "glitchlab",
+          "character": "digitale",
+          "length": "micro",
+          "density": 0.7,
+          "energy": 0.8,
+          "count": 6
+        }
+      }
+    ],
+    "palette": [
+      "fragment",
+      "lowpass"
+    ],
+    "notes": "Tesi: l'edificio esiste solo mentre lo ascolti. Estetica Kurokawa: rigore, monocromia, silenzi netti (tagli a zero, non dissolvenze), niente melodia. Una pulsazione nascosta a 100 bpm tiene insieme il pezzo anche quando non si sente. Il pezzo deve avere un arco: scansione, accumulo, rottura, residuo, riscansione."
+  },
+  "composition_meta": {
+    "author": "claude-code",
+    "version": 3,
+    "status": "proposta",
+    "created": "2026-10-27 20:46:00",
+    "seed": 7,
+    "script": "composition.py",
+    "script_sha": "c1c0e4862861798d",
+    "previous_feedback": ""
+  }
+}

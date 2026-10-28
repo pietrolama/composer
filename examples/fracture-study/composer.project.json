@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "fracture-study",
+    "title": "Fracture Study",
+    "duration_seconds": 90,
+    "tempo": 90,
+    "seed": 4812
+  },
+  "sections": [
+    {
+      "id": "sec-accumulation",
+      "name": "Accumulation",
+      "start": 0,
+      "end": 30
+    },
+    {
+      "id": "sec-fracture",
+      "name": "Fracture",
+      "start": 30,
+      "end": 70
+    },
+    {
+      "id": "sec-residue",
+      "name": "Residue",
+      "start": 70,
+      "end": 90
+    }
+  ],
+  "parts": [
+    {
+      "id": "part-texture",
+      "name": "Texture A",
+      "role": "background",
+      "source_id": "asset-texture",
+      "section_ids": [
+        "sec-accumulation",
+        "sec-fracture",
+        "sec-residue"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-impulses",
+      "name": "Impulsi",
+      "role": "foreground",
+      "source_id": "asset-impulses",
+      "section_ids": [
+        "sec-fracture"
+      ],
+      "locked": false
+    },
+    {
+      "id": "part-fracture",
+      "name": "Frattura",
+      "role": "interruption",
+      "source_id": "asset-fracture",
+      "section_ids": [
+        "sec-fracture"
+      ],
+      "locked": false
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-texture",
+      "path": "../../../glitchLAB/library/1a25cd93ab.wav",
+      "sha256": "9c00d4db72809d1dd4222f473d7580dd9477a265e492ae982db7f31306042e2e",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "1a25cd93ab",
+        "character": "spettrale",
+        "seed": 1742692731,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 13.186,
+          "transients": 1.37,
+          "centroid": 3781.0,
+          "noisiness": 0.05,
+          "periodicity": 0.957,
+          "silence": 0.013,
+          "rms": -16.4
+        },
+        "rebuild": "python -m glitchlab render <dna di 1a25cd93ab>"
+      }
+    },
+    {
+      "id": "asset-impulses",
+      "path": "../../../glitchLAB/library/b10a3e3840.wav",
+      "sha256": "24248231fa6c48dbeffa3c9d5ecd987452c99d6d1c695dfc70eb3255dcaddaba",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "b10a3e3840",
+        "character": "microstrutturale",
+        "seed": 88163378,
+        "lineage": {
+          "op": "birth",
+          "parents": []
+        },
+        "descriptors": {
+          "duration": 0.879,
+          "transients": 14.79,
+          "centroid": 6604.9,
+          "noisiness": 0.53,
+          "periodicity": 0.309,
+          "silence": 0.073,
+          "rms": -14.9
+        },
+        "rebuild": "python -m glitchlab render <dna di b10a3e3840>"
+      }
+    },
+    {
+      "id": "asset-fracture",
+      "path": "../../../glitchLAB/library/0b954992ba.wav",
+      "sha256": "d4bb3b5eaa82b7ea22225636df20bad9a0b8c8ea9d9dc1789720b06132fe3523",
+      "provenance": {
+        "source": "glitchLAB",
+        "glitchlab_id": "0b954992ba",
+        "character": "violento",
+        "seed": 86539573,
+        "lineage": {
+          "op": "expand",
+          "parents": [
+            "309845883a"
+          ]
+        },
+        "descriptors": {
+          "duration": 1.708,
+          "transients": 5.27,
+          "centroid": 7196.0,
+          "noisiness": 0.497,
+          "periodicity": 0.858,
+          "silence": 0.237,
+          "rms": -10.5
+        },
+        "rebuild": "python -m glitchlab render <dna di 0b954992ba>"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "node-texture-player",
+      "type": "sample_player",
+      "part_id": "part-texture",
+      "params": {
+        "gain": 0.8,
+        "playback_rate": 1.0,
+        "loop": true
+      }
+    },
+    {
+      "id": "node-texture-filter",
+      "type": "lowpass",
+      "part_id": "part-texture",
+      "params": {
+        "cutoff_hz": 4000
+      }
+    },
+    {
+      "id": "node-impulses-player",
+      "type": "sample_player",
+      "part_id": "part-impulses",
+      "params": {
+        "gain": 0.7
+      }
+    },
+    {
+      "id": "node-fracture-player",
+      "type": "sample_player",
+      "part_id": "part-fracture",
+      "params": {
+        "gain": 0.5,
+        "playback_rate": 0.5
+      }
+    },
+    {
+      "id": "node-master",
+      "type": "gain",
+      "part_id": null,
+      "params": {
+        "gain": 0.65
+      }
+    },
+    {
+      "id": "node-out",
+      "type": "output",
+      "part_id": null,
+      "params": {}
+    },
+    {
+      "id": "node-texture-fragment",
+      "type": "fragment",
+      "part_id": "part-texture",
+      "params": {
+        "slice_ms": 60.0,
+        "mix": 1.0
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-002",
+      "source": "node-texture-filter.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-003",
+      "source": "node-impulses-player.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-004",
+      "source": "node-fracture-player.audio_out",
+      "target": "node-master.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-005",
+      "source": "node-master.audio_out",
+      "target": "node-out.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-1",
+      "source": "node-texture-player.audio_out",
+      "target": "node-texture-fragment.audio_in",
+      "kind": "audio_connection"
+    },
+    {
+      "id": "conn-2",
+      "source": "node-texture-fragment.audio_out",
+      "target": "node-texture-filter.audio_in",
+      "kind": "audio_connection"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-001",
+      "time": 30,
+      "target": "node-texture-filter",
+      "message": "cutoff_hz 900"
+    },
+    {
+      "id": "ev-002",
+      "time": 50,
+      "target": "node-fracture-player",
+      "message": "gain 0.9"
+    },
+    {
+      "id": "ev-003",
+      "time": 70,
+      "target": "node-texture-filter",
+      "message": "cutoff_hz 300"
+    },
+    {
+      "id": "ev-004",
+      "time": 85,
+      "target": "node-master",
+      "message": "gain 0"
+    }
+  ],
+  "rules": [
+    {
+      "id": "rule-001",
+      "source": "part-impulses",
+      "target": "part-texture",
+      "when": "on_onset",
+      "effect": "fragment",
+      "params": {
+        "sensitivity": 0.5,
+        "window_ms": 260.0,
+        "probability": 0.6,
+        "slice_ms_min": 15.0,
+        "slice_ms_max": 90.0
+      }
+    }
+  ],
+  "presentation": {
+    "parts": {
+      "part-texture": {
+        "x": 140,
+        "y": 180
+      },
+      "part-impulses": {
+        "x": 140,
+        "y": 320
+      },
+      "part-fracture": {
+        "x": 140,
+        "y": 460
+      }
+    },
+    "nodes": {}
+  }
+}

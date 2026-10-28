@@ -1,0 +1,9 @@
+#N canvas 0 0 460 160 10;
+#X obj 20 20 inlet;
+#X obj 150 20 inlet~;
+#X obj 300 20 inlet~;
+#X obj 150 70 throw~ composer-L;
+#X obj 300 70 throw~ composer-R;
+#X text 20 120 composer.out v1 - sums into the main bus (catch~ in main.pd);
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;

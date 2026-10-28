@@ -1,0 +1,19 @@
+[project]
+name = "composer"
+version = "0.1.0"
+description = "Composizione algoritmica assistita compilata in patch Pure Data"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+gui = ["PySide6>=6.6"]
+test = ["pytest", "numpy", "scipy"]
+
+[project.scripts]
+composer = "composer.cli:main"
+
+[tool.setuptools]
+packages = ["composer", "composer.integrations"]
+
+[tool.setuptools.package-data]
+composer = ["pd_modules/*.pd"]

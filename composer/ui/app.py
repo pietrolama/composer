@@ -93,6 +93,8 @@ class MainWindow(QMainWindow):
             lambda rid, f: self.apply("modifica regola", lambda p: edit.update_rule(p, rid, **f), keep=[rid]))
         self.inspector.seed_changed.connect(
             lambda v: self.apply("seed", lambda p: edit.set_seed(p, v), keep=[]))
+        self.inspector.section_changed.connect(
+            lambda sid, f: self.apply("modifica sezione", lambda p: edit.update_section(p, sid, **f), keep=[sid]))
         right = self._dock("Inspector", self.inspector, Qt.RightDockWidgetArea)
 
         self.browser = QTreeWidget()
@@ -125,10 +127,16 @@ class MainWindow(QMainWindow):
         s = QSettings("Composer", "Composer")
         geo = s.value("geometry")
         if geo:
-            self.restoreGeometry(geo)
+            try:
+                self.restoreGeometry(geo)
+            except Exception:
+                pass
         state = s.value("windowState")
         if state:
-            self.restoreState(state)
+            try:
+                self.restoreState(state)
+            except Exception:
+                pass
 
     def _save_settings(self):
         s = QSettings("Composer", "Composer")
@@ -180,12 +188,12 @@ class MainWindow(QMainWindow):
         bar.addSeparator()
 
         # AI & Composizione
-        act("Prepara brief", self.prepare_brief, "Ctrl+Shift+B",
-            "Salva e genera brief.md per comporre")
-        act("Ricomponi", self.recompose, "Ctrl+Shift+R",
-            "Genera una nuova variante deterministica con il seed corrente")
-        act("Accetta", lambda: self.verdict("accettata"), tip="Accetta la versione attuale")
-        act("Rifiuta…", lambda: self.verdict("rifiutata"), tip="Rifiuta con note per la prossima iterazione")
+        self.act_brief = act("Prepara brief", self.prepare_brief, "Ctrl+Shift+B",
+                             "Salva e genera brief.md per comporre")
+        self.act_recompose = act("Ricomponi", self.recompose, "Ctrl+Shift+R",
+                                 "Genera una nuova variante deterministica con il seed corrente")
+        self.act_accept = act("Accetta", lambda: self.verdict("accettata"), tip="Accetta la versione attuale")
+        self.act_reject = act("Rifiuta…", lambda: self.verdict("rifiutata"), tip="Rifiuta con note per la prossima iterazione")
         bar.addSeparator()
 
         # Motore Sonoro & Build
@@ -237,8 +245,30 @@ class MainWindow(QMainWindow):
         self.brief.load(self.project)
         if hasattr(self, "comp_strip"):
             self.comp_strip.set_sections(self.project.sections)
+        self._sync_browser_selection(selected)
         self._comp_info()
         self._title()
+
+    def _sync_browser_selection(self, selected_ids):
+        if not selected_ids:
+            self.browser.clearSelection()
+            return
+        target = selected_ids[0]
+        it = self.browser.topLevelItem(0)
+        # Scan tree items
+        def scan(parent):
+            for i in range(parent.childCount()):
+                item = parent.child(i)
+                data = item.data(0, Qt.UserRole)
+                if data and len(data) == 2 and data[1] == target:
+                    self.browser.setCurrentItem(item)
+                    return True
+                if scan(item):
+                    return True
+            return False
+        for k in range(self.browser.topLevelItemCount()):
+            if scan(self.browser.topLevelItem(k)):
+                break
 
     def _title(self):
         if not isValid(self.undo):  # cleanChanged can fire during teardown
@@ -271,6 +301,9 @@ class MainWindow(QMainWindow):
         for p in self.project.parts:
             it = QTreeWidgetItem(parts, [f"{p.name}  ({len(self.project.part_nodes(p.id))})"])
             it.setData(0, Qt.UserRole, ("select", p.id))
+            for n in self.project.part_nodes(p.id):
+                nit = QTreeWidgetItem(it, [f"{n.id} ({n.type})"])
+                nit.setData(0, Qt.UserRole, ("select", n.id))
         rl = QTreeWidgetItem(self.browser, ["Regole"])
         for r in self.project.rules:
             n = len(self.expansions[r.id].events) if r.id in self.expansions else "✗"
@@ -326,19 +359,21 @@ class MainWindow(QMainWindow):
             if self.apply("importa campione", imp):
                 self.statusBar().showMessage(f"importato {value}", 4000)
 
-    def select(self, element_id):
+    def select(self, element_id, center=False):
         self.tabs.setCurrentIndex(1)
         self.scene.clearSelection()
         item = self.scene.item_for(element_id)
         if item:
             item.setSelected(True)
             self.view.ensureVisible(item, 80, 80)
-            self.view.centerOn(item)
+            if center:
+                self.view.centerOn(item)
 
     def _selection(self):
         if not isValid(self.scene):  # selectionChanged can fire during teardown
             return
         ids = self.scene.selected_ids()
+        self._sync_browser_selection(ids)
         objs = self.project.by_id() if self.project else {}
         if len(ids) == 1 and ids[0] in objs:
             obj = objs[ids[0]]
@@ -501,14 +536,33 @@ class MainWindow(QMainWindow):
 
     def _on_section_clicked(self, section):
         if not section:
+            self._selection()
             return
         intent = f" — «{section.intent}»" if section.intent else ""
         self.statusBar().showMessage(f"Sezione: {section.name} [{section.start:g}s - {section.end:g}s] · "
                                      f"energia {section.energy:g} · densità {section.density:g}{intent}", 5000)
+        self.inspector.show_section(self.project, section)
+        # Sincronizza evidenziazione e selezione parti nel canvas
+        active_parts = [p.id for p in self.project.parts if section.id in p.section_ids]
+        self.scene.blockSignals(True)
+        self.scene.clearSelection()
+        for pid in active_parts:
+            it = self.scene.item_for(pid)
+            if it:
+                it.setSelected(True)
+        self.scene.blockSignals(False)
 
     def _comp_info(self):
         m = self.project.composition_meta
-        if m.get("version"):
+        has_version = bool(m.get("version"))
+        has_script = (self.project.path.parent / "composition.py").exists() if self.project and self.project.path else False
+
+        if hasattr(self, "act_accept"):
+            self.act_accept.setEnabled(has_version)
+            self.act_reject.setEnabled(has_version)
+            self.act_recompose.setEnabled(has_script)
+
+        if has_version:
             fb = f" — «{m['feedback']}»" if m.get("feedback") else ""
             self.comp_info.setText(f"Versione v{m['version']} · {m.get('author', '')} · {m.get('created', '')} · "
                                    f"seed {m.get('seed', '')} · <b>{m.get('status', 'proposta')}</b>{fb}")
@@ -520,7 +574,7 @@ class MainWindow(QMainWindow):
     def _tab(self, index):
         for dock in self.findChildren(QDockWidget):
             if dock.objectName() in ("Inspector", "Browser"):
-                dock.setVisible(index == 1)
+                dock.setVisible(True)
 
     def _changed_on_disk(self, path):
         if self._own_write or not Path(path).exists():

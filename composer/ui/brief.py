@@ -47,6 +47,8 @@ class FormStrip(QWidget):
 
     def set_sections(self, sections):
         self.sections = sections
+        if self.selected_index is not None and self.selected_index >= len(sections):
+            self.selected_index = None
         self.update()
 
     def mousePressEvent(self, e):

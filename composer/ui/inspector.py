@@ -15,6 +15,7 @@ class Inspector(QWidget):
     part_changed = Signal(str, dict)           # part id, fields for edit.update_part
     rule_changed = Signal(str, dict)           # rule id, fields for edit.update_rule
     seed_changed = Signal(int)
+    section_changed = Signal(str, dict)        # section id, fields for edit.update_section
 
     def __init__(self):
         super().__init__()
@@ -174,3 +175,41 @@ class Inspector(QWidget):
         lock.setChecked(part.locked)
         lock.toggled.connect(lambda on: self.part_changed.emit(part.id, {"locked": on}))
         form.addRow("", lock)
+
+    def show_section(self, project, section):
+        form = self._reset(f"Sezione «{section.name}»", f"{section.id} · {section.start:g}s – {section.end:g}s")
+        name = QLineEdit(section.name)
+        name.editingFinished.connect(lambda: name.text() != section.name and
+                                     self.section_changed.emit(section.id, {"name": name.text()}))
+        form.addRow("nome", name)
+
+        dur = QDoubleSpinBox()
+        dur.setRange(1, 3600)
+        dur.setSuffix(" s")
+        dur.setValue(section.end - section.start)
+        dur.valueChanged.connect(lambda v: self.section_changed.emit(section.id, {"duration": v}))
+        form.addRow("durata", dur)
+
+        energy = QDoubleSpinBox()
+        energy.setRange(0, 1)
+        energy.setSingleStep(0.05)
+        energy.setValue(section.energy)
+        energy.valueChanged.connect(lambda v: self.section_changed.emit(section.id, {"energy": v}))
+        form.addRow("energia", energy)
+
+        density = QDoubleSpinBox()
+        density.setRange(0, 1)
+        density.setSingleStep(0.05)
+        density.setValue(section.density)
+        density.valueChanged.connect(lambda v: self.section_changed.emit(section.id, {"density": v}))
+        form.addRow("densità", density)
+
+        intent = QLineEdit(section.intent)
+        intent.setPlaceholderText("cosa deve accadere in questa sezione...")
+        intent.editingFinished.connect(lambda: intent.text() != section.intent and
+                                       self.section_changed.emit(section.id, {"intent": intent.text()}))
+        form.addRow("intenzione", intent)
+
+        parts_in_sec = [p for p in project.parts if section.id in p.section_ids]
+        part_names = ", ".join(p.name for p in parts_in_sec) or "nessuna parte attiva"
+        form.addRow("parti attive", QLabel(f"<span style='color:#9aa0a6'>{part_names}</span>"))

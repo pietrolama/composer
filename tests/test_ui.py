@@ -183,10 +183,39 @@ def test_composition_strip_sync_and_selection(win):
     sec = win.project.sections[0]
     win.comp_strip.section_clicked.emit(sec)
     assert sec.name in win.statusBar().currentMessage()
+    # Inspector is showing section details
+    assert win.inspector.body is not None
 
 
-def test_select_ensures_canvas_tab(win):
+def test_select_ensures_canvas_tab_and_browser_sync(win):
     win.tabs.setCurrentIndex(0)
     assert win.tabs.currentIndex() == 0
-    win.select(win.project.nodes[0].id)
+    part = win.project.parts[0]
+    win.select(part.id)
     assert win.tabs.currentIndex() == 1
+    # Browser item is synchronized
+    curr = win.browser.currentItem()
+    assert curr is not None
+
+
+def test_section_click_simulated_mouse_press(win):
+    win.comp_strip.resize(600, 40)
+    strip = win.comp_strip
+    # Click near the left edge inside the first section
+    from PySide6.QtGui import QMouseEvent
+    from PySide6.QtCore import QEvent, QPointF, Qt
+    ev = QMouseEvent(QEvent.MouseButtonPress, QPointF(20, 20), Qt.LeftButton, Qt.LeftButton, Qt.NoModifier)
+    strip.mousePressEvent(ev)
+    assert strip.selected_index == 0
+    assert win.inspector.body is not None
+
+
+def test_action_states_based_on_project_status(win):
+    # Fracture demo has nodes but no AI version meta
+    assert not win.act_accept.isEnabled()
+    assert not win.act_reject.isEnabled()
+    # Mocking version meta
+    win.project.composition_meta["version"] = 1
+    win._comp_info()
+    assert win.act_accept.isEnabled()
+    assert win.act_reject.isEnabled()

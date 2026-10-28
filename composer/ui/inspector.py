@@ -117,6 +117,8 @@ class Inspector(QWidget):
             return
         for spec in mod.params:
             value = node.params.get(spec.name, spec.default)
+            is_modified = spec.name in node.params and node.params[spec.name] != spec.default
+            param_label = f"<b>{spec.name} *</b>" if is_modified else spec.name
             if spec.kind == "float":
                 w = QDoubleSpinBox()
                 w.setDecimals(3 if (spec.max or 0) <= 20 else 1)
@@ -141,8 +143,8 @@ class Inspector(QWidget):
                     w.addItem(a.id, a.id)
                 w.setCurrentIndex(max(0, w.findData(node.params.get(spec.name))))
                 w.activated.connect(lambda _, n=spec.name, c=w: self.param_changed.emit(node.id, n, c.currentData()))
-            w.setToolTip(f"{spec.name}: {spec.min}–{spec.max} {spec.unit}" if spec.kind == "float" else spec.name)
-            form.addRow(spec.name, w)
+            w.setToolTip(f"{spec.name}: default {spec.default} ({spec.min}–{spec.max} {spec.unit})" if spec.kind == "float" else spec.name)
+            form.addRow(param_label, w)
 
     def show_part(self, project, part):
         form = self._reset(f"Parte «{part.name}»", part.id)

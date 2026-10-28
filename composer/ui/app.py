@@ -158,32 +158,41 @@ class MainWindow(QMainWindow):
             bar.addAction(a)
             return a
 
-        act("Nuovo", self._new_project, QKeySequence.New, "Nuovo progetto: si parte dal brief")
-        act("Apri", self._open_dialog, QKeySequence.Open)
-        act("Salva", self.save, QKeySequence.Save)
+        # File & Progetto
+        act("Nuovo", self._new_project, QKeySequence.New, "Nuovo progetto (Ctrl+N)")
+        act("Apri", self._open_dialog, QKeySequence.Open, "Apri progetto (Ctrl+O)")
+        act("Salva", self.save, QKeySequence.Save, "Salva modifiche (Ctrl+S)")
         bar.addSeparator()
+
+        # Modifica & Storia
         u = self.undo.createUndoAction(self, "Annulla")
         u.setShortcut(QKeySequence.Undo)
         r = self.undo.createRedoAction(self, "Ripeti")
         r.setShortcut(QKeySequence.Redo)
         bar.addAction(u)
         bar.addAction(r)
+        act("Nuova parte", self._new_part, tip="Aggiunge una nuova parte alla composizione")
+        act("Duplica", self._duplicate, "Ctrl+D", "Duplica i nodi selezionati mantenendo i cavi interni")
         bar.addSeparator()
-        act("Nuova parte", self._new_part, tip="Aggiunge una parte vuota")
-        act("Duplica", self._duplicate, "Ctrl+D", "Duplica i nodi selezionati con i cavi tra loro")
-        act("Adatta vista", lambda: self.view.fit(), "F")
+
+        # Vista & Zoom
+        act("Adatta vista", lambda: self.view.fit(), "F", "Inquadra l'intera composizione (F)")
         bar.addSeparator()
-        act("Prepara brief per Claude", self.prepare_brief, "Ctrl+Shift+B",
-            "Salva e scrive brief.md: poi chiedi a Claude Code di comporre")
+
+        # AI & Composizione
+        act("Prepara brief", self.prepare_brief, "Ctrl+Shift+B",
+            "Salva e genera brief.md per comporre")
         act("Ricomponi", self.recompose, "Ctrl+Shift+R",
-            "Riesegue l'ultimo composition.py con il seed corrente: una variante senza passare dall'IA")
-        act("Accetta", lambda: self.verdict("accettata"), tip="Accetta la versione corrente")
-        act("Rifiuta…", lambda: self.verdict("rifiutata"), tip="Rifiuta con un commento: lo legge la prossima versione")
+            "Genera una nuova variante deterministica con il seed corrente")
+        act("Accetta", lambda: self.verdict("accettata"), tip="Accetta la versione attuale")
+        act("Rifiuta…", lambda: self.verdict("rifiutata"), tip="Rifiuta con note per la prossima iterazione")
         bar.addSeparator()
-        act("Genera patch", self.build, "Ctrl+B", "Compila il progetto in build/<id>")
-        act("Verifica in Pd", self.check, tip="Carica main.pd in Pd headless")
-        act("Render", self.render, "Ctrl+R", "Render offline in build/<id>/render.wav")
-        self.play_action = act("▶ Ascolta", self.toggle_play, "Space", "Compila e apre main.pd con pw-jack pd -jack")
+
+        # Motore Sonoro & Build
+        act("Genera patch", self.build, "Ctrl+B", "Compila il grafo e le regole in patch Pure Data (Ctrl+B)")
+        act("Verifica Pd", self.check, tip="Verifica sintassi e caricamento in Pd headless")
+        act("Render", self.render, "Ctrl+R", "Esegue il render offline in render.wav (Ctrl+R)")
+        self.play_action = act("▶ Ascolta", self.toggle_play, "Space", "Avvia o ferma l'ascolto real-time (Spazio)")
 
     # -- model plumbing ---------------------------------------------------------------
     def apply(self, label, fn, keep=None):

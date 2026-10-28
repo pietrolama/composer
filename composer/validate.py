@@ -160,10 +160,10 @@ def validate(project):
         if abs(a.end - b.start) > 1e-6:
             warn(b.id, f"la sezione non inizia dove finisce {a.id} ({a.end} ≠ {b.start})")
 
-    if not project.nodes:
-        warn(project.id, "nessuna composizione: il brief aspetta l'IA")
+    if not project.nodes and not project.intent_blocks:
+        warn(project.id, "nessuna composizione: inserisci blocchi nella DAW o prepara il brief")
         return issues
-    if not any(n.type == "output" for n in project.nodes):
+    if project.nodes and not any(n.type == "output" for n in project.nodes):
         err(project.id, "nessun nodo 'output': la composizione non suonerebbe")
     return issues
 

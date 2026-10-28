@@ -191,6 +191,12 @@ class Compiler:
             for a, b in _intervals(self.p, part):
                 timed.append((a, 0, recv(part.id), ["start"]))
                 timed.append((b, 1, recv(part.id), ["stop"]))
+        # Blocchi Intenzionali DAW: comandi temporali
+        for b in self.p.intent_blocks:
+            timed.append((b.start, 0, recv(b.id), ["start"]))
+            for p_name, p_val in b.params.items():
+                timed.append((b.start, 0, recv(b.id), [p_name, str(p_val)]))
+            timed.append((b.start + b.duration, 1, recv(b.id), ["stop"]))
         for e in self.p.events:
             timed.append((e.time, 2, recv(e.target), e.message.split()))
         self.rule_report = {}
@@ -257,6 +263,21 @@ class Compiler:
         for k, node in enumerate(top):
             self.place_node(patch, node, 20 + 240 * k, 360, file)
 
+        # Inserisci e collega automaticamente i blocchi DAW al bus master
+        patch.obj("throwL", 800, 560, "throw~", "composer-L")
+        patch.obj("throwR", 920, 560, "throw~", "composer-R")
+        for k, b in enumerate(self.p.intent_blocks):
+            cat_mod = catalog.MODULES.get(b.category)
+            if not cat_mod:
+                continue
+            b_x, b_y = 20 + 240 * (k % 4), 430 + 100 * (k // 4)
+            patch.obj(f"r:{b.id}", b_x, b_y, "r", recv(b.id))
+            patch.obj(b.id, b_x, b_y + 30, cat_mod.abstraction)
+            patch.connect(f"r:{b.id}", 0, b.id, 0)
+            # Connetti le uscite audio direttamente al master bus
+            patch.connect(b.id, 0, "throwL", 0)
+            patch.connect(b.id, 1, "throwR", 0)
+
         def endpoint(text, direction):
             node, port = self.port(text)
             if node.part_id is None:
@@ -287,9 +308,9 @@ class Compiler:
     # -- driver --------------------------------------------------------------
     def run(self):
         issues = validate(self.p)
-        if not self.p.nodes:
+        if not self.p.nodes and not self.p.intent_blocks:
             from .validate import Issue
-            issues.append(Issue("error", self.p.id, "nessuna composizione da compilare: il brief aspetta l'IA"))
+            issues.append(Issue("error", self.p.id, "nessuna composizione da compilare: aggiungi blocchi nella DAW o nodi nel grafo"))
         rep = report(issues)
         _write(self.out / "reports" / "validation.json", json.dumps(rep, indent=2, ensure_ascii=False) + "\n")
         if rep["errors"]:
@@ -306,7 +327,9 @@ class Compiler:
         files[name] = text
         files["score.txt"] = self.score()
 
+        intent_modules = {catalog.MODULES[b.category].abstraction for b in self.p.intent_blocks if b.category in catalog.MODULES}
         modules = sorted({self.module(n).abstraction for n in self.p.nodes}
+                         | intent_modules
                          | ({"composer.bank_slot"} if any(n.type == "bank" for n in self.p.nodes) else set()))
         for m in modules:
             files[f"{m}.pd"] = (catalog.PD_MODULES / f"{m}.pd").read_text()

@@ -22,6 +22,7 @@ from ..validate import validate
 from .canvas import CanvasScene, CanvasView
 from .brief import BriefEditor, FormStrip
 from .inspector import Inspector
+from .timeline import TimelineScene, TimelineView
 
 
 class Snapshot(QUndoCommand):
@@ -54,6 +55,18 @@ class MainWindow(QMainWindow):
         self.scene = CanvasScene()
         self.view = CanvasView(self.scene)
         self.brief = BriefEditor(self)
+
+        # Timeline Intenzionale (DAW Intenzionale)
+        self.timeline_scene = TimelineScene()
+        self.timeline_view = TimelineView(self.timeline_scene)
+        self.timeline_scene.block_selected.connect(self._timeline_block_selected)
+        self.timeline_scene.block_moved.connect(
+            lambda bid, st, ln: self.apply("sposta blocco", lambda p: edit.update_intent_block(p, bid, start=st, lane=ln), keep=[bid]))
+        self.timeline_scene.add_block_requested.connect(
+            lambda cat, st, ln: self.apply("aggiungi blocco", lambda p: edit.add_intent_block(p, cat, st, 10.0, ln)))
+        self.timeline_scene.delete_requested.connect(
+            lambda ids: self.apply("elimina blocco", lambda p: [edit.remove_intent_block(p, x) for x in ids]))
+
         comp = QWidget()
         cl = QVBoxLayout(comp)
         cl.setContentsMargins(0, 0, 0, 0)
@@ -64,9 +77,11 @@ class MainWindow(QMainWindow):
         cl.addWidget(self.comp_info)
         cl.addWidget(self.comp_strip)
         cl.addWidget(self.view, 1)
+
         self.tabs = QTabWidget()
+        self.tabs.addTab(self.timeline_view, "DAW Intenzionale")
+        self.tabs.addTab(comp, "Grafo Sonoro")
         self.tabs.addTab(self.brief, "Brief")
-        self.tabs.addTab(comp, "Composizione")
         self.tabs.currentChanged.connect(self._tab)
         self.setCentralWidget(self.tabs)
         self.watcher = QFileSystemWatcher(self)
@@ -95,6 +110,8 @@ class MainWindow(QMainWindow):
             lambda v: self.apply("seed", lambda p: edit.set_seed(p, v), keep=[]))
         self.inspector.section_changed.connect(
             lambda sid, f: self.apply("modifica sezione", lambda p: edit.update_section(p, sid, **f), keep=[sid]))
+        self.inspector.intent_block_changed.connect(
+            lambda bid, f: self.apply("modifica blocco", lambda p: edit.update_intent_block(p, bid, **f), keep=[bid]))
         right = self._dock("Inspector", self.inspector, Qt.RightDockWidgetArea)
 
         self.browser = QTreeWidget()
@@ -246,6 +263,11 @@ class MainWindow(QMainWindow):
             self.inspector.show_section(self.project, sec)
             if hasattr(self, "comp_strip"):
                 self.comp_strip.set_selected_id(sec.id)
+        # Se c'è un blocco intenzionale mantenuto, mostra il blocco nell'inspector
+        elif keep and len(keep) == 1 and any(b.id == keep[0] for b in self.project.intent_blocks):
+            blk = next(b for b in self.project.intent_blocks if b.id == keep[0])
+            self.inspector.show_intent_block(self.project, blk)
+        self.timeline_scene.rebuild(self.project, keep)
         self._problems(issues)
         self._browser()
         self.brief.load(self.project)
@@ -310,6 +332,10 @@ class MainWindow(QMainWindow):
             for n in self.project.part_nodes(p.id):
                 nit = QTreeWidgetItem(it, [f"{n.id} ({n.type})"])
                 nit.setData(0, Qt.UserRole, ("select", n.id))
+        intents = QTreeWidgetItem(self.browser, ["Blocchi Intenzionali (DAW)"])
+        for b in self.project.intent_blocks:
+            it = QTreeWidgetItem(intents, [f"{b.name} [{b.category}]  {b.start:g}s+{b.duration:g}s (C{b.lane + 1})"])
+            it.setData(0, Qt.UserRole, ("intent_block", b.id))
         rl = QTreeWidgetItem(self.browser, ["Regole"])
         for r in self.project.rules:
             n = len(self.expansions[r.id].events) if r.id in self.expansions else "✗"
@@ -334,7 +360,7 @@ class MainWindow(QMainWindow):
                     it.setForeground(0, QColor("#6f9f5a"))
         except GlitchLabUnavailable as exc:
             QTreeWidgetItem(gl, [str(exc)])
-        for top in (mods, parts, rl, assets):
+        for top in (mods, parts, intents, rl, assets):
             top.setExpanded(True)
 
     def _browser_activate(self, item):
@@ -342,7 +368,10 @@ class MainWindow(QMainWindow):
         if not data:
             return
         kind, value = data
-        if kind == "module":
+        if kind == "intent_block":
+            self.tabs.setCurrentIndex(0)
+            self._timeline_block_selected(value)
+        elif kind == "module":
             centre = self.view.mapToScene(self.view.viewport().rect().center())
             part = next((i for i in self.scene.selected_ids() if i in self.scene.frames), None)
             self._add(value, centre, part)
@@ -558,6 +587,12 @@ class MainWindow(QMainWindow):
                 it.setSelected(True)
         self.scene.blockSignals(False)
         self._sync_browser_selection(active_parts)
+
+    def _timeline_block_selected(self, block_id):
+        block = next((b for b in self.project.intent_blocks if b.id == block_id), None)
+        if block:
+            self.inspector.show_intent_block(self.project, block)
+            self._sync_browser_selection([block.id])
 
     def _comp_info(self):
         m = self.project.composition_meta

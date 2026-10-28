@@ -239,3 +239,37 @@ def test_action_states_based_on_project_status(win):
     win._comp_info()
     assert win.act_accept.isEnabled()
     assert win.act_reject.isEnabled()
+
+
+def test_intentional_daw_timeline_add_edit_undo(win):
+    from composer import edit
+    assert hasattr(win, "timeline_view")
+    assert win.tabs.tabText(0) == "DAW Intenzionale"
+
+    # Add an intent block
+    edit.add_intent_block(win.project, "texture", start=5.0, duration=20.0, lane=1, name="Dense Texture")
+    win.refresh()
+    assert len(win.project.intent_blocks) == 1
+    block = win.project.intent_blocks[0]
+    assert block.category == "texture"
+    assert block.lane == 1
+    assert "density" in block.params
+
+    # Select and check inspector
+    win._timeline_block_selected(block.id)
+    assert win.inspector.body is not None
+
+    # Update intent block
+    win.inspector.intent_block_changed.emit(block.id, {"params": {"density": 0.95}})
+    assert win.project.intent_blocks[0].params["density"] == 0.95
+
+    # Move block on timeline
+    win.timeline_scene.block_moved.emit(block.id, 12.0, 2)
+    assert win.project.intent_blocks[0].start == 12.0
+    assert win.project.intent_blocks[0].lane == 2
+
+    # Undo
+    win.undo.undo()
+    assert win.project.intent_blocks[0].start == 5.0
+    assert win.project.intent_blocks[0].lane == 1
+

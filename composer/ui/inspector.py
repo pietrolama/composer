@@ -16,6 +16,7 @@ class Inspector(QWidget):
     rule_changed = Signal(str, dict)           # rule id, fields for edit.update_rule
     seed_changed = Signal(int)
     section_changed = Signal(str, dict)        # section id, fields for edit.update_section
+    intent_block_changed = Signal(str, dict)   # block id, fields for edit.update_intent_block
 
     def __init__(self):
         super().__init__()
@@ -224,3 +225,67 @@ class Inspector(QWidget):
         parts_in_sec = [p for p in project.parts if section.id in p.section_ids]
         part_names = ", ".join(p.name for p in parts_in_sec) or "nessuna parte attiva"
         form.addRow("parti attive", QLabel(f"<span style='color:#9aa0a6'>{part_names}</span>"))
+
+    def show_intent_block(self, project, block):
+        from ..intent import INTENT_CATEGORIES
+        cat = INTENT_CATEGORIES.get(block.category)
+        form = self._reset(f"Blocco Intenzionale «{block.name or block.category}»",
+                           f"Categoria: {cat.label if cat else block.category} · Corsia {block.lane + 1}")
+        name = QLineEdit(block.name)
+        name.editingFinished.connect(lambda: name.text() != block.name and
+                                     self.intent_block_changed.emit(block.id, {"name": name.text()}))
+        form.addRow("nome", name)
+
+        start = QDoubleSpinBox()
+        start.setRange(0.0, 7200.0)
+        start.setDecimals(2)
+        start.setSingleStep(0.5)
+        start.setSuffix(" s")
+        start.setKeyboardTracking(False)
+        start.setValue(block.start)
+        start.editingFinished.connect(lambda: start.value() != block.start and
+                                      self.intent_block_changed.emit(block.id, {"start": start.value()}))
+        form.addRow("inizio", start)
+
+        dur = QDoubleSpinBox()
+        dur.setRange(0.1, 7200.0)
+        dur.setDecimals(2)
+        dur.setSingleStep(0.5)
+        dur.setSuffix(" s")
+        dur.setKeyboardTracking(False)
+        dur.setValue(block.duration)
+        dur.editingFinished.connect(lambda: dur.value() != block.duration and
+                                    self.intent_block_changed.emit(block.id, {"duration": dur.value()}))
+        form.addRow("durata", dur)
+
+        lane = QSpinBox()
+        lane.setRange(1, 16)
+        lane.setValue(block.lane + 1)
+        lane.valueChanged.connect(lambda v: self.intent_block_changed.emit(block.id, {"lane": v - 1}))
+        form.addRow("corsia", lane)
+
+        src = QComboBox()
+        src.addItem("— sintetizzatore / generatore interno —", None)
+        for a in project.assets:
+            src.addItem(a.id, a.id)
+        src.setCurrentIndex(max(0, src.findData(block.source_asset)))
+        src.activated.connect(lambda _: self.intent_block_changed.emit(block.id, {"source_asset": src.currentData()}))
+        form.addRow("campione", src)
+
+        if cat:
+            form.addRow("", QLabel(f"<b>Parametri Espressivi ({cat.label})</b>"))
+            for param in cat.params:
+                val = block.params.get(param.name, param.default)
+                spin = QDoubleSpinBox()
+                spin.setRange(param.min, param.max)
+                spin.setDecimals(2 if param.step < 1 else 1)
+                spin.setSingleStep(param.step)
+                if param.unit:
+                    spin.setSuffix(f" {param.unit}")
+                spin.setKeyboardTracking(False)
+                spin.setValue(float(val))
+                spin.setToolTip(param.doc)
+                spin.editingFinished.connect(
+                    lambda p=param.name, s=spin: self.intent_block_changed.emit(
+                        block.id, {"params": {p: s.value()}}))
+                form.addRow(param.label, spin)

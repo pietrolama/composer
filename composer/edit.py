@@ -351,3 +351,58 @@ def set_project_fields(project, title=None, tempo=None):
         if not 20 <= float(tempo) <= 400:
             raise EditError("tempo fuori da 20..400 bpm")
         project.tempo = float(tempo)
+
+
+# -- Intent blocks (Intentional DAW) -------------------------------------------
+def add_intent_block(project, category, start, duration, lane=0, name="", source_asset=None, params=None):
+    from .intent import INTENT_CATEGORIES
+    from .model import IntentBlock
+    cat = INTENT_CATEGORIES.get(category)
+    if cat is None:
+        raise EditError(f"categoria d'intenzione sconosciuta: {category}")
+    if duration <= 0:
+        raise EditError("la durata del blocco deve essere > 0")
+    if start < 0:
+        start = 0.0
+    defaults = {p.name: p.default for p in cat.params}
+    merged_params = {**defaults, **(params or {})}
+    block = IntentBlock(
+        id=new_id(project, f"intent-{category}"),
+        category=category,
+        lane=int(lane),
+        start=float(start),
+        duration=float(duration),
+        name=name.strip() or cat.label,
+        source_asset=source_asset,
+        params=merged_params,
+    )
+    project.intent_blocks.append(block)
+    return block
+
+
+def update_intent_block(project, block_id, **fields):
+    block = next((b for b in project.intent_blocks if b.id == block_id), None)
+    if block is None:
+        raise EditError(f"blocco intenzionale inesistente: {block_id}")
+    for k, v in fields.items():
+        if k == "params":
+            block.params.update(v)
+        elif k in ("start", "duration"):
+            val = float(v)
+            if k == "duration" and val <= 0:
+                raise EditError("durata deve essere > 0")
+            if k == "start" and val < 0:
+                val = 0.0
+            setattr(block, k, val)
+        elif k == "lane":
+            block.lane = max(0, int(v))
+        elif hasattr(block, k):
+            setattr(block, k, v)
+
+
+def remove_intent_block(project, block_id):
+    before = len(project.intent_blocks)
+    project.intent_blocks = [b for b in project.intent_blocks if b.id != block_id]
+    if len(project.intent_blocks) == before:
+        raise EditError(f"blocco intenzionale inesistente: {block_id}")
+

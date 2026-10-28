@@ -16,7 +16,23 @@ import json
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
+
+
+@dataclass
+class IntentBlock:
+    """An intentional musical/sonic block placed on the timeline.
+    
+    Categories: texture, granulation, impulses, fracture, drone, space.
+    """
+    id: str
+    category: str
+    lane: int
+    start: float
+    duration: float
+    name: str = ""
+    source_asset: str | None = None
+    params: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -111,6 +127,7 @@ class Project:
     tempo: float = 120.0
     seed: int = 0
     sections: list[Section] = field(default_factory=list)
+    intent_blocks: list[IntentBlock] = field(default_factory=list)
     parts: list[Part] = field(default_factory=list)
     assets: list[Asset] = field(default_factory=list)
     nodes: list[Node] = field(default_factory=list)
@@ -125,7 +142,7 @@ class Project:
     # -- lookup ------------------------------------------------------------
     def by_id(self):
         out = {}
-        for group in (self.sections, self.parts, self.assets, self.nodes,
+        for group in (self.sections, self.intent_blocks, self.parts, self.assets, self.nodes,
                       self.connections, self.events, self.rules, self.brief.instruments):
             for item in group:
                 out.setdefault(item.id, item)
@@ -154,6 +171,7 @@ class Project:
                         "duration_seconds": self.duration_seconds,
                         "tempo": self.tempo, "seed": self.seed},
             "sections": [asdict(s) for s in self.sections],
+            "intent_blocks": [asdict(b) for b in self.intent_blocks],
             "parts": [asdict(p) for p in self.parts],
             "assets": [asdict(a) for a in self.assets],
             "nodes": [asdict(n) for n in self.nodes],
@@ -189,6 +207,9 @@ def migrate(data):
         data["brief"] = {"instruments": [], "palette": used, "notes": ""}
         data["composition_meta"] = {"author": "human"}
         data["schema_version"] = 2
+    if data["schema_version"] == 2:  # intent blocks on the timeline
+        data.setdefault("intent_blocks", [])
+        data["schema_version"] = 3
     return data
 
 
@@ -199,6 +220,7 @@ def from_dict(data, path=None):
         id=meta["id"], title=meta["title"], duration_seconds=meta["duration_seconds"],
         tempo=meta.get("tempo", 120.0), seed=meta.get("seed", 0),
         sections=[Section(**s) for s in data.get("sections", [])],
+        intent_blocks=[IntentBlock(**b) for b in data.get("intent_blocks", [])],
         parts=[Part(**p) for p in data.get("parts", [])],
         assets=[Asset(**a) for a in data.get("assets", [])],
         nodes=[Node(**n) for n in data.get("nodes", [])],

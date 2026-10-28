@@ -1,0 +1,18 @@
+#N canvas 0 0 700 500 10;
+#X obj 20 20 inlet;
+#X obj 150 420 outlet~;
+#X obj 300 420 outlet~;
+#X obj 20 60 route rate burst sharpness drop_prob;
+#X obj 150 120 metro 250;
+#X obj 150 180 click~;
+#X obj 300 180 click~;
+#X obj 150 240 bbp~ 800 5;
+#X obj 300 240 bbp~ 1200 5;
+#X text 20 460 composer.impulses v1 - args: rate_hz burst sharpness drop_prob. Impulses generator.;
+#X connect 0 0 3 0;
+#X connect 4 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 8 0;
+#X connect 7 0 1 0;
+#X connect 8 0 2 0;

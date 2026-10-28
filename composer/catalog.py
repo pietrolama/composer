@@ -54,6 +54,66 @@ class Module:
 CONTROL = Port("control", "in", "control", (0,))
 
 MODULES = {m.name: m for m in (
+    # -- Nuovi Moduli Intenzionali (DAW) --------------------------------------
+    Module(
+        "texture", "composer.texture",
+        params=(Param("density", "", 0.5, 0.0, 1.0),
+                Param("grain", "", 0.4, 0.0, 1.0),
+                Param("evolution", "", 0.3, 0.0, 1.0),
+                Param("brightness", "", 0.5, 0.0, 1.0)),
+        ports=(CONTROL, Port("audio_out", "out", "audio", (0, 1))),
+        source=True,
+        doc="Generatore di texture continua, tappeti ed evoluzione timbrica.",
+        category="intent"),
+    Module(
+        "granulation", "composer.granulation",
+        params=(Param("grain_size_ms", "ms", 80.0, 10.0, 500.0),
+                Param("density", "g/s", 15.0, 1.0, 60.0),
+                Param("spray", "", 0.3, 0.0, 1.0),
+                Param("pitch_dispersion", "st", 0.0, 0.0, 24.0)),
+        ports=(CONTROL, Port("audio_out", "out", "audio", (0, 1))),
+        source=True,
+        doc="Granulatore / dispersione e spray di particelle sonore.",
+        category="intent"),
+    Module(
+        "impulses", "composer.impulses",
+        params=(Param("rate_hz", "Hz", 2.0, 0.2, 20.0),
+                Param("burst", "", 0.2, 0.0, 1.0),
+                Param("sharpness", "", 0.7, 0.0, 1.0),
+                Param("drop_prob", "", 0.1, 0.0, 0.9)),
+        ports=(CONTROL, Port("audio_out", "out", "audio", (0, 1))),
+        source=True,
+        doc="Generatore di impulsi, raffiche ritmiche e transitori percussivi.",
+        category="intent"),
+    Module(
+        "drone", "composer.drone",
+        params=(Param("freq_hz", "Hz", 55.0, 20.0, 440.0),
+                Param("instability", "", 0.2, 0.0, 1.0),
+                Param("saturation", "", 0.3, 0.0, 1.0)),
+        ports=(CONTROL, Port("audio_out", "out", "audio", (0, 1))),
+        source=True,
+        doc="Fondamento sonoro continuo, masse armoniche e basse frequenze.",
+        category="intent"),
+    Module(
+        "fracture", "composer.fracture",
+        params=(Param("frequency", "", 0.3, 0.0, 1.0),
+                Param("gap_ms", "ms", 120.0, 10.0, 1500.0),
+                Param("harshness", "", 0.8, 0.0, 1.0)),
+        ports=(CONTROL, Port("audio_in", "in", "audio", (1, 2)),
+               Port("audio_out", "out", "audio", (0, 1))),
+        doc="Processore di glitch, fratture, tagli netti e silenzi improvvisi.",
+        category="intent"),
+    Module(
+        "space", "composer.space",
+        params=(Param("decay_s", "s", 3.5, 0.2, 20.0),
+                Param("damping", "", 0.5, 0.0, 1.0),
+                Param("diffusion", "", 0.7, 0.0, 1.0)),
+        ports=(CONTROL, Port("audio_in", "in", "audio", (1, 2)),
+               Port("audio_out", "out", "audio", (0, 1))),
+        doc="Diffusione stereo, risonanze ambientali e decadimento.",
+        category="intent"),
+
+    # -- Moduli Campionatori & Utilities --------------------------------------
     Module(
         "sample_player", "composer.sample_player",
         params=(Param("asset", "", None, kind="asset"),

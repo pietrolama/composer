@@ -377,6 +377,72 @@ def add_intent_block(project, category, start, duration, lane=0, name="", source
         params=merged_params,
     )
     project.intent_blocks.append(block)
+
+    # Assicura che esista il nodo output master nel grafo
+    out_node = next((n for n in project.nodes if n.type == "output"), None)
+    if not out_node:
+        out_node = add_node(project, "output", part_id=None, pos=(600, 300))
+
+    # Genera automaticamente la catena modulare semplificata intrecciata
+    part_name = f"{cat.label} L{lane+1} ({start:.1f}s)"
+    part = add_part(project, part_name, source_id=source_asset)
+    part.role = cat.label
+    part_y = 100 + lane * 180
+
+    if category == "texture":
+        # Sorgente (campione se presente o generatore texture) -> Lowpass -> Gain -> Master Out
+        src_type = "sample_player" if source_asset else "texture"
+        src_params = {"asset": source_asset, "loop": True} if source_asset else {
+            "density": merged_params.get("density", 0.5),
+            "grain": merged_params.get("grain", 0.4),
+            "evolution": merged_params.get("evolution", 0.3),
+            "brightness": merged_params.get("brightness", 0.5),
+        }
+        src = add_node(project, src_type, part_id=part.id, pos=(50, part_y), params=src_params)
+        flt = add_node(project, "lowpass", part_id=part.id, pos=(260, part_y), params={"cutoff_hz": 2400.0})
+        gn = add_node(project, "gain", part_id=part.id, pos=(460, part_y), params={"gain": 0.8})
+        connect(project, f"{src.id}.audio_out", f"{flt.id}.audio_in")
+        connect(project, f"{flt.id}.audio_out", f"{gn.id}.audio_in")
+        connect(project, f"{gn.id}.audio_out", f"{out_node.id}.audio_in")
+
+    elif category == "granulation":
+        # Granulatore -> Gain -> Master Out
+        gran = add_node(project, "granulation", part_id=part.id, pos=(50, part_y), params=merged_params)
+        gn = add_node(project, "gain", part_id=part.id, pos=(280, part_y), params={"gain": 0.85})
+        connect(project, f"{gran.id}.audio_out", f"{gn.id}.audio_in")
+        connect(project, f"{gn.id}.audio_out", f"{out_node.id}.audio_in")
+
+    elif category == "impulses":
+        # Impulsi -> Gain -> Master Out
+        imp = add_node(project, "impulses", part_id=part.id, pos=(50, part_y), params=merged_params)
+        gn = add_node(project, "gain", part_id=part.id, pos=(280, part_y), params={"gain": 0.9})
+        connect(project, f"{imp.id}.audio_out", f"{gn.id}.audio_in")
+        connect(project, f"{gn.id}.audio_out", f"{out_node.id}.audio_in")
+
+    elif category == "drone":
+        # Drone -> Clip/Saturazione -> Gain -> Master Out
+        drn = add_node(project, "drone", part_id=part.id, pos=(50, part_y), params=merged_params)
+        clp = add_node(project, "clip", part_id=part.id, pos=(260, part_y), params={"low": -0.85, "high": 0.85})
+        gn = add_node(project, "gain", part_id=part.id, pos=(460, part_y), params={"gain": 0.7})
+        connect(project, f"{drn.id}.audio_out", f"{clp.id}.audio_in")
+        connect(project, f"{clp.id}.audio_out", f"{gn.id}.audio_in")
+        connect(project, f"{gn.id}.audio_out", f"{out_node.id}.audio_in")
+
+    elif category == "fracture":
+        # Processore Glitch / Frattura: interruzione audio
+        frac = add_node(project, "fracture", part_id=part.id, pos=(50, part_y), params=merged_params)
+        connect(project, f"{frac.id}.audio_out", f"{out_node.id}.audio_in")
+
+    elif category == "space":
+        # Riverbero / Spazio e diffusione stereo
+        spc = add_node(project, "space", part_id=part.id, pos=(50, part_y), params=merged_params)
+        connect(project, f"{spc.id}.audio_out", f"{out_node.id}.audio_in")
+
+    # Aggiorna durata totale se il blocco supera la fine del pezzo
+    end_time = float(start + duration)
+    if end_time > project.duration_seconds:
+        project.duration_seconds = end_time
+
     return block
 
 

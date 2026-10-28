@@ -36,13 +36,33 @@ LENGTHS = {"micro": "micro-eventi < 1 s", "frammento": "frammenti 1–5 s",
 class FormStrip(QWidget):
     """The form at a glance: width = duration, height = energy, shade = density."""
 
-    def __init__(self):
+    section_clicked = Signal(object)  # Section or None
+
+    def __init__(self, compact=False):
         super().__init__()
         self.sections = []
-        self.setMinimumHeight(90)
+        self.compact = compact
+        self.setMinimumHeight(38 if compact else 90)
+        self.selected_index = None
 
     def set_sections(self, sections):
         self.sections = sections
+        self.update()
+
+    def mousePressEvent(self, e):
+        total = sum(s.end - s.start for s in self.sections) or 1
+        w, x = self.width() - 2, 1.0
+        click_x = e.position().x()
+        for k, s in enumerate(self.sections):
+            sw = w * (s.end - s.start) / total
+            if x <= click_x <= x + sw:
+                self.selected_index = k
+                self.section_clicked.emit(s)
+                self.update()
+                return
+            x += sw
+        self.selected_index = None
+        self.section_clicked.emit(None)
         self.update()
 
     def paintEvent(self, e):
@@ -50,16 +70,23 @@ class FormStrip(QWidget):
         p.setRenderHint(QPainter.Antialiasing)
         p.fillRect(self.rect(), QColor("#1b1d21"))
         total = sum(s.end - s.start for s in self.sections) or 1
-        w, h, x = self.width() - 2, self.height() - 22, 1.0
+        label_h = 14 if self.compact else 22
+        w, h, x = self.width() - 2, self.height() - label_h, 1.0
         for k, s in enumerate(self.sections):
             sw = w * (s.end - s.start) / total
             bh = max(4, h * s.energy)
             col = QColor(PART_COLORS[k % len(PART_COLORS)])
             col.setAlphaF(0.35 + 0.6 * s.density)
-            p.fillRect(QRectF(x + 1, 4 + h - bh, sw - 2, bh), col)
+            rect = QRectF(x + 1, 3 + h - bh, max(1.0, sw - 2), bh)
+            p.fillRect(rect, col)
+            if self.selected_index == k:
+                p.setPen(QPen(QColor("#f2c14e"), 2))
+                p.drawRect(QRectF(x + 1, 2, max(1.0, sw - 2), self.height() - 4))
             p.setPen(QColor("#e6e6e6"))
-            p.drawText(QRectF(x + 4, h + 4, sw - 8, 16), Qt.AlignLeft | Qt.AlignVCenter,
-                       f"{s.name}  {s.end - s.start:g}s")
+            if not self.compact or sw > 45:
+                dur = f" {s.end - s.start:g}s" if sw > 60 else ""
+                p.drawText(QRectF(x + 4, h + 1, max(1.0, sw - 8), label_h - 2),
+                           Qt.AlignLeft | Qt.AlignVCenter, f"{s.name}{dur}")
             x += sw
 
 

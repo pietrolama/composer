@@ -175,3 +175,18 @@ def test_new_rule_from_part_menu_and_delete(win):
     assert "fragment" in win.statusBar().currentMessage()
     win.scene.delete_requested.emit([new[0].id])
     assert [r.id for r in win.project.rules] == ["rule-001"]
+
+
+def test_composition_strip_sync_and_selection(win):
+    assert hasattr(win, "comp_strip")
+    assert len(win.comp_strip.sections) == len(win.project.sections)
+    sec = win.project.sections[0]
+    win.comp_strip.section_clicked.emit(sec)
+    assert sec.name in win.statusBar().currentMessage()
+
+
+def test_select_ensures_canvas_tab(win):
+    win.tabs.setCurrentIndex(0)
+    assert win.tabs.currentIndex() == 0
+    win.select(win.project.nodes[0].id)
+    assert win.tabs.currentIndex() == 1

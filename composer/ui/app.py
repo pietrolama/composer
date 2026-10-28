@@ -8,7 +8,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from PySide6.QtCore import QFileSystemWatcher, QPointF, QProcess, Qt, QTimer
+from PySide6.QtCore import QFileSystemWatcher, QPointF, QProcess, QSettings, Qt, QTimer
 from PySide6.QtGui import QAction, QColor, QKeySequence, QPalette, QUndoCommand, QUndoStack
 from shiboken6 import isValid
 from PySide6.QtWidgets import (QApplication, QDockWidget, QFileDialog, QListWidget, QListWidgetItem,
@@ -20,7 +20,7 @@ from ..compiler import CompileError, compile_project
 from ..integrations.glitchlab import GlitchLabAdapter, GlitchLabUnavailable
 from ..validate import validate
 from .canvas import CanvasScene, CanvasView
-from .brief import BriefEditor
+from .brief import BriefEditor, FormStrip
 from .inspector import Inspector
 
 
@@ -59,7 +59,10 @@ class MainWindow(QMainWindow):
         cl.setContentsMargins(0, 0, 0, 0)
         self.comp_info = QLabel()
         self.comp_info.setStyleSheet("padding:6px 10px; color:#c9d1d9; background:#24272c")
+        self.comp_strip = FormStrip(compact=True)
+        self.comp_strip.section_clicked.connect(self._on_section_clicked)
         cl.addWidget(self.comp_info)
+        cl.addWidget(self.comp_strip)
         cl.addWidget(self.view, 1)
         self.tabs = QTabWidget()
         self.tabs.addTab(self.brief, "Brief")
@@ -112,10 +115,25 @@ class MainWindow(QMainWindow):
 
         self._actions()
         self.resize(1500, 920)
+        self._restore_settings()
         if path:
             self.open(path)
         else:
             self.statusBar().showMessage("Apri un progetto (Ctrl+O)")
+
+    def _restore_settings(self):
+        s = QSettings("Composer", "Composer")
+        geo = s.value("geometry")
+        if geo:
+            self.restoreGeometry(geo)
+        state = s.value("windowState")
+        if state:
+            self.restoreState(state)
+
+    def _save_settings(self):
+        s = QSettings("Composer", "Composer")
+        s.setValue("geometry", self.saveGeometry())
+        s.setValue("windowState", self.saveState())
 
     # -- setup ---------------------------------------------------------------------
     def _dock(self, title, widget, area):
@@ -208,6 +226,8 @@ class MainWindow(QMainWindow):
         self._problems(issues)
         self._browser()
         self.brief.load(self.project)
+        if hasattr(self, "comp_strip"):
+            self.comp_strip.set_sections(self.project.sections)
         self._comp_info()
         self._title()
 
@@ -298,10 +318,12 @@ class MainWindow(QMainWindow):
                 self.statusBar().showMessage(f"importato {value}", 4000)
 
     def select(self, element_id):
+        self.tabs.setCurrentIndex(1)
         self.scene.clearSelection()
         item = self.scene.item_for(element_id)
         if item:
             item.setSelected(True)
+            self.view.ensureVisible(item, 80, 80)
             self.view.centerOn(item)
 
     def _selection(self):
@@ -404,6 +426,7 @@ class MainWindow(QMainWindow):
             if ans == QMessageBox.Save:
                 self.save()
         self._stop_pd()
+        self._save_settings()
         e.accept()
 
     def _new_project(self):
@@ -466,6 +489,13 @@ class MainWindow(QMainWindow):
                 return
         self.apply(status, lambda p: compose.set_status(p, status, feedback))
         self.save()
+
+    def _on_section_clicked(self, section):
+        if not section:
+            return
+        intent = f" — «{section.intent}»" if section.intent else ""
+        self.statusBar().showMessage(f"Sezione: {section.name} [{section.start:g}s - {section.end:g}s] · "
+                                     f"energia {section.energy:g} · densità {section.density:g}{intent}", 5000)
 
     def _comp_info(self):
         m = self.project.composition_meta

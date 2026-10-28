@@ -45,9 +45,18 @@ class FormStrip(QWidget):
         self.setMinimumHeight(38 if compact else 90)
         self.selected_index = None
 
+    def set_selected_id(self, section_id):
+        new_index = next((k for k, s in enumerate(self.sections) if s.id == section_id), None)
+        if new_index != self.selected_index:
+            self.selected_index = new_index
+            self.update()
+
     def set_sections(self, sections):
+        old_id = self.sections[self.selected_index].id if self.selected_index is not None and self.selected_index < len(self.sections) else None
         self.sections = sections
-        if self.selected_index is not None and self.selected_index >= len(sections):
+        if old_id:
+            self.selected_index = next((k for k, s in enumerate(sections) if s.id == old_id), None)
+        elif self.selected_index is not None and self.selected_index >= len(sections):
             self.selected_index = None
         self.update()
 

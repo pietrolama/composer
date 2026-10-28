@@ -240,6 +240,12 @@ class MainWindow(QMainWindow):
         self.scene.rebuild(self.project, issues, selected, counts)
         self.scene.blockSignals(False)
         self._selection()
+        # Se c'è una sezione mantenuta nella selezione/focus, aggiorna l'inspector per la sezione
+        if keep and len(keep) == 1 and any(s.id == keep[0] for s in self.project.sections):
+            sec = next(s for s in self.project.sections if s.id == keep[0])
+            self.inspector.show_section(self.project, sec)
+            if hasattr(self, "comp_strip"):
+                self.comp_strip.set_selected_id(sec.id)
         self._problems(issues)
         self._browser()
         self.brief.load(self.project)
@@ -551,6 +557,7 @@ class MainWindow(QMainWindow):
             if it:
                 it.setSelected(True)
         self.scene.blockSignals(False)
+        self._sync_browser_selection(active_parts)
 
     def _comp_info(self):
         m = self.project.composition_meta

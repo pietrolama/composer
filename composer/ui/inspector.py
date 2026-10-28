@@ -183,25 +183,36 @@ class Inspector(QWidget):
                                      self.section_changed.emit(section.id, {"name": name.text()}))
         form.addRow("nome", name)
 
+        curr_dur = section.end - section.start
         dur = QDoubleSpinBox()
-        dur.setRange(1, 3600)
+        dur.setRange(0.1, 3600)
+        dur.setDecimals(1)
+        dur.setSingleStep(1.0)
         dur.setSuffix(" s")
-        dur.setValue(section.end - section.start)
-        dur.valueChanged.connect(lambda v: self.section_changed.emit(section.id, {"duration": v}))
+        dur.setKeyboardTracking(False)
+        dur.setValue(curr_dur)
+        dur.editingFinished.connect(lambda: dur.value() != curr_dur and
+                                    self.section_changed.emit(section.id, {"duration": dur.value()}))
         form.addRow("durata", dur)
 
         energy = QDoubleSpinBox()
         energy.setRange(0, 1)
+        energy.setDecimals(2)
         energy.setSingleStep(0.05)
+        energy.setKeyboardTracking(False)
         energy.setValue(section.energy)
-        energy.valueChanged.connect(lambda v: self.section_changed.emit(section.id, {"energy": v}))
+        energy.editingFinished.connect(lambda: energy.value() != section.energy and
+                                       self.section_changed.emit(section.id, {"energy": energy.value()}))
         form.addRow("energia", energy)
 
         density = QDoubleSpinBox()
         density.setRange(0, 1)
+        density.setDecimals(2)
         density.setSingleStep(0.05)
+        density.setKeyboardTracking(False)
         density.setValue(section.density)
-        density.valueChanged.connect(lambda v: self.section_changed.emit(section.id, {"density": v}))
+        density.editingFinished.connect(lambda: density.value() != section.density and
+                                        self.section_changed.emit(section.id, {"density": density.value()}))
         form.addRow("densità", density)
 
         intent = QLineEdit(section.intent)

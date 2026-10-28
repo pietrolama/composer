@@ -210,6 +210,26 @@ def test_section_click_simulated_mouse_press(win):
     assert win.inspector.body is not None
 
 
+def test_section_edit_and_undo_redo(win):
+    sec0 = win.project.sections[0]
+    orig_dur = sec0.end - sec0.start
+    # Change section duration via inspector
+    win.inspector.section_changed.emit(sec0.id, {"duration": orig_dur + 10})
+    updated_sec0 = win.project.sections[0]
+    assert (updated_sec0.end - updated_sec0.start) == orig_dur + 10
+    # Change section energy
+    win.inspector.section_changed.emit(sec0.id, {"energy": 0.85})
+    assert win.project.sections[0].energy == 0.85
+    # Undo both changes
+    win.undo.undo()
+    assert win.project.sections[0].energy != 0.85
+    win.undo.undo()
+    assert (win.project.sections[0].end - win.project.sections[0].start) == orig_dur
+    # Redo
+    win.undo.redo()
+    assert (win.project.sections[0].end - win.project.sections[0].start) == orig_dur + 10
+
+
 def test_action_states_based_on_project_status(win):
     # Fracture demo has nodes but no AI version meta
     assert not win.act_accept.isEnabled()
